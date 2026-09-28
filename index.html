@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#21140b" />
+  <meta name="description" content="KVAAN Group — considered real estate, enduring places and future-ready developments." />
+  <title>KVAAN GROUP — Real Estate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#21140b;--brown:#713b12;--brown2:#9a622d;--cream:#f3e7d1;--paper:#fcf8f0;
+      --sand:#dfc9a6;--gold:#d9b57d;--muted:#776958;--line:rgba(33,20,11,.14);--white:#fffaf1;
+      --shadow:0 30px 100px rgba(44,24,8,.18);--ease:cubic-bezier(.2,.75,.2,1)
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif;overflow-x:hidden}
+    body.is-locked{overflow:hidden}a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{cursor:pointer}
+    ::selection{background:var(--brown);color:#fff8ee}
+    .noise{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.028;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E")}
+    .loader{position:fixed;inset:0;z-index:100;background:#21140b;color:#f8ead5;display:grid;place-items:center;transition:opacity .8s var(--ease),visibility .8s}.loader.done{opacity:0;visibility:hidden}.loader-inner{text-align:center}.loader-mark{width:82px;height:82px;object-fit:cover;border-radius:50%;mix-blend-mode:screen;filter:sepia(.35);animation:pulse 1.6s ease-in-out infinite}.loader-line{width:170px;height:1px;background:rgba(255,255,255,.18);margin:25px auto 0;overflow:hidden}.loader-line i{display:block;height:100%;width:100%;background:var(--gold);transform:translateX(-100%);animation:loadline 1.3s var(--ease) forwards}
+    @keyframes loadline{to{transform:translateX(0)}}@keyframes pulse{50%{transform:scale(1.06);opacity:.75}}
+    .progress{position:fixed;left:0;top:0;height:2px;width:0;background:var(--gold);z-index:99;box-shadow:0 0 16px rgba(217,181,125,.65)}
+    .cursor,.cursor-dot{position:fixed;z-index:95;pointer-events:none;display:none}.cursor{width:42px;height:42px;border:1px solid rgba(255,255,255,.7);border-radius:50%;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .2s,height .2s}.cursor-dot{width:5px;height:5px;background:#fff;border-radius:50%;transform:translate(-50%,-50%);mix-blend-mode:difference}
+/* FINAL KVAAN POLISH */
+.hero{position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(18,12,8,.86) 0%,rgba(18,12,8,.58) 30%,rgba(18,12,8,.14) 58%,rgba(18,12,8,.05) 82%),linear-gradient(0deg,rgba(18,12,8,.48),transparent 38%)}
+.hero-content{position:relative;z-index:3}
+.hero-copy,.hero-text{background:linear-gradient(90deg,rgba(255,248,235,.055),transparent)!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important}
+.tree-section{position:relative}
+.tree-wrap{position:relative;isolation:isolate;min-height:790px}
+.tree-svg{position:absolute;left:50%;transform:translateX(-50%);top:20px;width:min(720px,60vw);height:auto;z-index:1;overflow:visible}
+.tree-core{z-index:6}
+.branch{position:absolute!important;z-index:8;display:flex;align-items:center;gap:10px;width:max-content;transition:transform .35s ease,filter .35s}
+.branch.left{flex-direction:row-reverse}.branch.right{flex-direction:row}
+.branch .dot{width:10px;height:10px;flex:0 0 10px;border-radius:50%;background:rgba(240,219,188,.95);box-shadow:0 0 0 4px rgba(255,255,255,.06),0 0 18px rgba(214,177,125,.38);z-index:3}
+.branch .label{border:1px solid rgba(255,255,255,.20)!important;background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.045))!important;backdrop-filter:blur(18px) saturate(120%);-webkit-backdrop-filter:blur(18px) saturate(120%);box-shadow:0 14px 36px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.18);border-radius:18px!important}
+.branch.left:after,.branch.right:before{width:46px}
+.project-kicker{display:block;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;opacity:.58;margin-bottom:3px}.project-name{display:block;font-weight:600}
+@media(max-width:900px){.tree-wrap{min-height:720px}.tree-svg{width:min(700px,76vw);top:55px}}
+@media(max-width:600px){.tree-wrap{min-height:680px}.tree-svg{width:112vw;max-width:none;top:72px}.branch .label{font-size:10px;padding:9px 11px;border-radius:14px!important}.branch.left:after,.branch.right:before{width:26px}}
+
+@media(pointer:fine){.cursor,.cursor-dot{display:block}}
+    .nav{position:fixed;top:0;left:0;right:0;height:86px;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;color:#fff;transition:background .45s,backdrop-filter .45s,color .45s,box-shadow .45s}.nav.scrolled{background:rgba(243,231,209,.88);backdrop-filter:blur(18px);color:var(--ink);box-shadow:0 1px 0 rgba(33,20,11,.08)}
+    .brand{display:flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.22em;font-weight:700}.brand img{width:42px;height:42px;object-fit:cover;border-radius:50%;mix-blend-mode:multiply;background:var(--cream)}
+    .navlinks{display:flex;gap:32px;font-size:10px;letter-spacing:.18em;text-transform:uppercase}.navlinks a{position:relative;opacity:.86}.navlinks a:after{content:"";position:absolute;left:0;bottom:-8px;width:0;height:1px;background:currentColor;transition:.3s}.navlinks a:hover:after{width:100%}
+    .navcta,.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid currentColor;border-radius:999px;text-transform:uppercase;letter-spacing:.15em;font-size:10px;transition:transform .35s var(--ease),box-shadow .35s,background .35s,color .35s}.navcta{padding:12px 17px}.navcta:hover,.btn:hover{transform:translateY(-3px)}
+    .hero{height:100svh;min-height:720px;position:relative;overflow:hidden;background:#2a190d;display:flex;align-items:flex-end}.hero-media{position:absolute;inset:-3%;background:linear-gradient(90deg,rgba(25,12,4,.82),rgba(25,12,4,.12) 62%,rgba(25,12,4,.3)),url("assets/building.jpg") center/cover;transform:scale(1.06);animation:heroIn 1.6s 1s var(--ease) forwards}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),transparent 42%,rgba(0,0,0,.62))}.hero-content{position:relative;z-index:2;width:min(1240px,90vw);margin:0 auto;padding:0 0 10vh;color:#fff;display:flex;justify-content:space-between;align-items:flex-end}.hero-kicker{font-size:10px;letter-spacing:.34em;text-transform:uppercase;opacity:0;animation:rise .9s 1.35s var(--ease) forwards}.hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(58px,8.6vw,132px);font-weight:500;line-height:.86;letter-spacing:-.065em;margin:22px 0 0;max-width:820px;overflow:hidden}.hero h1 span{display:block;opacity:0;transform:translateY(105%);animation:titleIn 1s var(--ease) forwards}.hero h1 span:nth-child(2){animation-delay:.12s}.hero h1 em{font-style:normal;color:#e9ca9c}.hero-copy{max-width:390px;color:rgba(255,255,255,.82);font-size:14px;line-height:1.75;margin:28px 0 0;opacity:0;animation:rise .9s 1.7s var(--ease) forwards}.hero-actions{display:flex;gap:11px;margin-top:28px;opacity:0;animation:rise .9s 1.82s var(--ease) forwards}.btn{padding:14px 18px;color:#fff;border-color:rgba(255,255,255,.35)}.btn.primary{background:#e8c998;color:#25170c;border-color:#e8c998}.btn.dark{background:var(--brown);border-color:var(--brown);color:#fff}.scrollcue{position:absolute;left:5vw;bottom:30px;z-index:3;display:flex;align-items:center;gap:12px;color:#fff;font-size:9px;letter-spacing:.25em;text-transform:uppercase;opacity:0;animation:rise .9s 2s var(--ease) forwards}.scrollcue:before{content:"";width:48px;height:1px;background:rgba(255,255,255,.6)}.scroll-arrow{position:absolute;right:5vw;bottom:26px;color:#fff;font-size:20px;z-index:3;animation:bob 1.8s ease-in-out infinite}
+    @keyframes heroIn{to{transform:scale(1)}}@keyframes rise{to{opacity:1;transform:none}}@keyframes titleIn{to{opacity:1;transform:none}}@keyframes bob{50%{transform:translateY(7px)}}
+    .marquee{background:var(--brown);color:#f7e8d0;overflow:hidden;border-block:1px solid rgba(255,255,255,.08)}.marquee-track{display:flex;width:max-content;animation:marquee 24s linear infinite}.marquee span{padding:16px 25px;font-size:9px;letter-spacing:.3em;text-transform:uppercase;white-space:nowrap}.marquee b{opacity:.35}@keyframes marquee{to{transform:translateX(-50%)}}
+    .section{padding:140px 7vw}.intro{background:var(--paper)}.intro-grid{max-width:1240px;margin:auto;display:grid;grid-template-columns:1.08fr .92fr;gap:9vw;align-items:end}.kicker{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--brown2);font-weight:700}.intro h2,.tree-head h2,.section-title{font-family:"Cormorant Garamond",serif;font-weight:500;letter-spacing:-.045em;line-height:1.02}.intro h2{font-size:clamp(44px,5.4vw,78px);margin:18px 0 0}.intro p{max-width:500px;margin:0;color:var(--muted);line-height:1.9;font-size:15px}.reveal{opacity:0;transform:translateY(55px);transition:opacity 1s var(--ease),transform 1s var(--ease)}.reveal.visible{opacity:1;transform:none}.reveal.delay-1{transition-delay:.12s}.reveal.delay-2{transition-delay:.24s}
+    /* Branch explorer */
+    .tree-section{background:var(--cream);position:relative;overflow:hidden;padding:105px 4vw 155px}.tree-section:before{content:"";position:absolute;width:70vw;height:70vw;max-width:950px;max-height:950px;border:1px solid rgba(113,59,18,.07);border-radius:50%;left:50%;top:54%;transform:translate(-50%,-50%);box-shadow:0 0 0 70px rgba(113,59,18,.025),0 0 0 140px rgba(113,59,18,.018)}.tree-head{text-align:center;max-width:740px;margin:0 auto 45px;position:relative;z-index:2}.tree-head h2{font-size:clamp(44px,5.7vw,78px);margin:16px 0}.tree-head p{color:#766856;line-height:1.8;max-width:610px;margin:auto}.tree-wrap{max-width:1250px;height:760px;margin:auto;position:relative;z-index:2}.tree-svg{position:absolute;left:50%;top:35px;transform:translateX(-50%);width:min(690px,58vw);height:auto;overflow:visible}.tree-stroke{fill:none;stroke:var(--brown);stroke-width:25;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 12px 10px rgba(78,40,12,.12))}.draw{stroke-dasharray:1900;stroke-dashoffset:1900}.tree-section.visible .draw{animation:draw 2.8s var(--ease) forwards}.tree-section.visible .draw:nth-child(2){animation-delay:.08s}.tree-section.visible .draw:nth-child(3){animation-delay:.16s}.tree-section.visible .draw:nth-child(4){animation-delay:.24s}.tree-section.visible .draw:nth-child(5){animation-delay:.32s}.tree-section.visible .draw:nth-child(6){animation-delay:.4s}.tree-section.visible .draw:nth-child(7){animation-delay:.48s}.tree-section.visible .draw:nth-child(8){animation-delay:.56s}@keyframes draw{to{stroke-dashoffset:0}}
+    .branch{position:absolute;z-index:8;left:0;top:0;display:flex;align-items:center;gap:10px;background:transparent;border:0;color:var(--brown);padding:0;margin:0;white-space:nowrap;transition:transform .4s var(--ease);will-change:transform}.branch .dot{width:13px;height:13px;border-radius:50%;background:var(--cream);border:3px solid var(--brown);box-shadow:0 0 0 7px rgba(113,59,18,.08);transition:.35s;flex:0 0 auto;position:relative;z-index:3}.branch .line{display:block;width:36px;height:1px;flex:0 0 auto;pointer-events:none;transform-origin:center;transition:transform .35s var(--ease)}.branch.left .line{background:linear-gradient(90deg,rgba(113,59,18,.08),rgba(113,59,18,.42));transform-origin:right center}.branch.right .line{background:linear-gradient(90deg,rgba(113,59,18,.42),rgba(113,59,18,.08));transform-origin:left center}.branch .label{padding:12px 17px;border:1px solid rgba(113,59,18,.2);border-radius:999px;background:rgba(255,253,248,.76);backdrop-filter:blur(10px);font-size:10px;letter-spacing:.15em;text-transform:uppercase;white-space:nowrap;box-shadow:0 12px 30px rgba(70,37,11,.07);transition:.35s}.branch:hover{transform:none}.branch:hover .label{transform:translateY(-5px)}.branch:hover .line{transform:scaleX(1.35)}.branch:hover .dot,.branch.active .dot{background:var(--brown);box-shadow:0 0 0 9px rgba(113,59,18,.11),0 0 24px rgba(113,59,18,.22)}.branch:hover .label,.branch.active .label{background:var(--brown);color:#fff;border-color:var(--brown);box-shadow:0 18px 38px rgba(70,37,11,.2)}
+    .branch.left,.branch.right{flex-direction:row}.tree-core{position:absolute;left:50%;bottom:5px;transform:translateX(-50%);text-align:center}.core-ring{width:112px;height:112px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(113,59,18,.22);background:rgba(255,253,248,.55);box-shadow:0 20px 45px rgba(75,41,12,.12);animation:float 4s ease-in-out infinite}.core-ring img{width:86px;height:86px;border-radius:50%;object-fit:cover;mix-blend-mode:multiply}.tree-core p{font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:#806b55;margin:10px 0 0}@keyframes float{50%{transform:translateY(-9px)}}
+    .tree-tip{position:absolute;left:50%;bottom:0;transform:translateX(-50%);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#8a765f;opacity:.8}
+    /* project section */
+    .projects{background:#21140b;color:#fff;padding:145px 5vw}.section-top{max-width:1250px;margin:auto;display:flex;justify-content:space-between;align-items:end;gap:35px;margin-bottom:55px}.section-title{font-size:clamp(45px,5.6vw,80px);margin:15px 0 0}.section-top p{max-width:380px;color:#cdbba7;line-height:1.8;font-size:14px}.project-grid{max-width:1250px;margin:auto;display:grid;grid-template-columns:1.18fr .82fr;gap:20px}.project-card{position:relative;overflow:hidden;background:#41250f;min-height:620px;border:1px solid rgba(255,255,255,.07)}.project-card.small{min-height:300px}.project-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease),filter 1s}.project-card:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.82))}.project-card:hover img{transform:scale(1.08);filter:saturate(1.08)}.project-card:hover .project-info{transform:translateY(-8px)}.project-info{position:absolute;left:30px;right:30px;bottom:28px;z-index:2;transition:transform .5s var(--ease)}.tag{display:inline-block;padding:7px 10px;border:1px solid rgba(255,255,255,.3);border-radius:999px;font-size:8px;letter-spacing:.18em;text-transform:uppercase}.project-info h3{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:38px;margin:15px 0 6px}.project-info p{color:#d8c8b7;font-size:12px}.stack{display:grid;gap:20px}.project-index{position:absolute;right:25px;top:25px;z-index:2;font-size:9px;letter-spacing:.18em;color:rgba(255,255,255,.6)}
+    .numbers{padding:105px 7vw;background:var(--paper)}.numbers-grid{max-width:1220px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line)}.stat{padding:45px 24px;border-right:1px solid var(--line)}.stat:last-child{border:0}.stat b{font-family:"Cormorant Garamond",serif;font-size:58px;font-weight:500;display:block}.stat span{font-size:9px;letter-spacing:.19em;text-transform:uppercase;color:#7a6d5e}
+    .about{background:#efe1cb}.about-grid{max-width:1220px;margin:auto;display:grid;grid-template-columns:.82fr 1.18fr;gap:9vw;align-items:center}.about-image{height:650px;overflow:hidden;position:relative}.about-image:after{content:"KVAAN";position:absolute;right:-2px;bottom:20px;font-family:"Cormorant Garamond",serif;font-size:100px;color:rgba(255,255,255,.2);writing-mode:vertical-rl}.about-image img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}.about-image:hover img{transform:scale(1.05)}.about h2{font-family:"Cormorant Garamond",serif;font-size:clamp(46px,5.5vw,78px);font-weight:500;line-height:.98;letter-spacing:-.05em;margin:17px 0 28px}.about p{color:#6e6153;line-height:1.9;max-width:530px}.about-list{margin-top:38px;border-top:1px solid var(--line)}.about-list div{display:flex;justify-content:space-between;padding:19px 0;border-bottom:1px solid var(--line);font-size:13px}.about-list strong{font-family:"Cormorant Garamond",serif;font-size:18px;font-weight:500}
+    .contact{background:var(--brown);color:#fff6e9;position:relative;overflow:hidden}.contact:before,.contact:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.08);border-radius:50%;pointer-events:none}.contact:before{width:700px;height:700px;right:-220px;top:-310px}.contact:after{width:420px;height:420px;left:-250px;bottom:-240px}.contact-inner{max-width:1220px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:9vw;position:relative;z-index:1}.contact h2{font-family:"Cormorant Garamond",serif;font-size:clamp(52px,6vw,88px);font-weight:500;line-height:.92;letter-spacing:-.055em;margin:16px 0 28px}.contact p{max-width:510px;color:#dfcbb2;line-height:1.85}.contact-form{display:grid;gap:13px}.contact-form input,.contact-form textarea{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.28);padding:16px 2px;color:#fff;outline:0;transition:border-color .3s}.contact-form textarea{min-height:120px;resize:vertical}.contact-form input:focus,.contact-form textarea:focus{border-color:#e6c48f}.contact-form input::placeholder,.contact-form textarea::placeholder{color:#c4ad91}.form-note{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#c7b196}.contact-form .btn{justify-self:start;margin-top:8px}
+    footer{background:#170d07;color:#9e8a75;padding:26px 5vw;display:flex;justify-content:space-between;gap:20px;font-size:9px;letter-spacing:.15em;text-transform:uppercase}
+    /* Modal */
+    .modal{position:fixed;inset:0;z-index:120;display:grid;place-items:center;background:rgba(19,9,3,.7);backdrop-filter:blur(18px);padding:22px;opacity:0;visibility:hidden;transition:.45s}.modal.open{opacity:1;visibility:visible}.modal-card{width:min(720px,100%);background:var(--paper);padding:52px;position:relative;transform:translateY(35px) scale(.97);transition:.55s var(--ease);box-shadow:var(--shadow)}.modal.open .modal-card{transform:none}.modal-close{position:absolute;right:20px;top:16px;width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--brown);font-size:22px}.modal-card h3{font-family:"Cormorant Garamond",serif;font-size:52px;font-weight:500;line-height:.98;margin:12px 0 17px}.modal-card p{color:#6d6153;line-height:1.85}.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}.mini-grid div{background:#eee0c9;padding:17px}.mini-grid b{display:block;font-size:18px;margin-bottom:5px}.mini-grid span{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#7d6d5a}
+    .toast{position:fixed;z-index:130;right:25px;bottom:25px;background:#21140b;color:#fff;padding:15px 18px;border-radius:999px;font-size:11px;box-shadow:var(--shadow);transform:translateY(100px);opacity:0;transition:.45s var(--ease)}.toast.show{transform:none;opacity:1}
+    /* Premium glassmorphism layer */
+    :root{
+      --glass:rgba(255,255,255,.12);
+      --glass-strong:rgba(255,255,255,.18);
+      --glass-dark:rgba(22,12,6,.28);
+      --glass-border:rgba(255,255,255,.28);
+      --glass-shadow:0 24px 70px rgba(27,13,3,.16);
+    }
+    .nav{border-bottom:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(18,10,5,.28),transparent);backdrop-filter:blur(12px) saturate(135%);-webkit-backdrop-filter:blur(12px) saturate(135%)}
+    .nav:before{content:"";position:absolute;inset:8px 3vw;z-index:-1;border:1px solid rgba(255,255,255,.08);border-radius:22px;background:rgba(255,255,255,.045);box-shadow:inset 0 1px 0 rgba(255,255,255,.13)}
+    .nav.scrolled{background:rgba(243,231,209,.62);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);box-shadow:0 12px 40px rgba(48,25,8,.09),inset 0 -1px 0 rgba(33,20,11,.08)}
+    .nav.scrolled:before{background:rgba(255,255,255,.2);border-color:rgba(113,59,18,.11)}
+    .navcta,.btn{position:relative;overflow:hidden;isolation:isolate;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 8px 26px rgba(35,17,5,.08)}
+    .navcta:before,.btn:before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 25%,rgba(255,255,255,.34) 48%,transparent 70%);transform:translateX(-120%);transition:transform .75s var(--ease);z-index:-1}
+    .navcta:hover:before,.btn:hover:before{transform:translateX(120%)}
+    .hero-content>div:first-child{position:relative;padding:34px 38px 38px;border:1px solid rgba(255,255,255,.2);border-radius:30px;background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.035));backdrop-filter:blur(14px) saturate(125%);-webkit-backdrop-filter:blur(14px) saturate(125%);box-shadow:0 30px 90px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.2);max-width:920px;overflow:hidden}
+    .hero-content>div:first-child:before{content:"";position:absolute;width:330px;height:330px;right:-160px;top:-190px;border-radius:50%;background:rgba(232,201,152,.16);filter:blur(10px);pointer-events:none}
+    .hero-content>div:first-child:after{content:"";position:absolute;inset:1px;border-radius:29px;background:linear-gradient(110deg,rgba(255,255,255,.16),transparent 28%,transparent 72%,rgba(255,255,255,.07));pointer-events:none}
+    .hero-kicker,.hero h1,.hero-copy,.hero-actions{position:relative;z-index:2}
+    .scrollcue{padding:10px 15px;border:1px solid rgba(255,255,255,.17);border-radius:999px;background:rgba(255,255,255,.07);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+    .scroll-arrow{width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.18);border-radius:50%;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+    .marquee{box-shadow:inset 0 1px 0 rgba(255,255,255,.08),inset 0 -1px 0 rgba(0,0,0,.12)}
+    .tree-section:after{content:"";position:absolute;width:420px;height:420px;right:-150px;top:20%;border-radius:50%;background:rgba(255,255,255,.28);filter:blur(60px);pointer-events:none}
+    .tree-head,.tree-wrap{filter:drop-shadow(0 18px 45px rgba(79,39,10,.04))}
+    .branch{filter:drop-shadow(0 10px 22px rgba(71,35,9,.08))}
+    .branch .label{background:linear-gradient(135deg,rgba(255,255,255,.58),rgba(255,255,255,.22));border-color:rgba(255,255,255,.68);backdrop-filter:blur(18px) saturate(145%);-webkit-backdrop-filter:blur(18px) saturate(145%);box-shadow:inset 0 1px 0 rgba(255,255,255,.8),0 18px 40px rgba(70,37,11,.11)}
+    .branch:hover .label,.branch.active .label{background:linear-gradient(135deg,rgba(113,59,18,.9),rgba(74,37,12,.76));backdrop-filter:blur(20px);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 20px 48px rgba(70,37,11,.24)}
+    .core-ring{background:linear-gradient(135deg,rgba(255,255,255,.5),rgba(255,255,255,.14));border-color:rgba(255,255,255,.7);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 25px 60px rgba(75,41,12,.17)}
+    .core-ring:after{content:"";position:absolute;width:26px;height:110px;transform:rotate(38deg);background:rgba(255,255,255,.25);filter:blur(8px);animation:glassSweep 4.5s ease-in-out infinite;pointer-events:none}
+    @keyframes glassSweep{0%,25%{left:-55px;opacity:0}45%{opacity:.8}70%,100%{left:135px;opacity:0}}
+    .project-card{border-radius:28px;border-color:rgba(255,255,255,.16);box-shadow:0 30px 90px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.12)}
+    .project-info{left:20px;right:20px;bottom:20px;padding:20px 22px;border:1px solid rgba(255,255,255,.2);border-radius:22px;background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.045));backdrop-filter:blur(17px) saturate(130%);-webkit-backdrop-filter:blur(17px) saturate(130%);box-shadow:inset 0 1px 0 rgba(255,255,255,.17),0 15px 40px rgba(0,0,0,.15)}
+    .project-info h3{margin-top:12px}.project-card:hover .project-info{transform:translateY(-9px) scale(1.01)}
+    .tag{background:rgba(255,255,255,.08);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+    .stat{transition:background .4s,transform .4s,box-shadow .4s}.stat:hover{background:rgba(255,255,255,.48);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 15px 35px rgba(70,37,11,.05);transform:translateY(-4px)}
+    .about-image{border-radius:28px;border:1px solid rgba(255,255,255,.45);box-shadow:0 30px 80px rgba(72,39,12,.13),inset 0 1px 0 rgba(255,255,255,.65)}
+    .about-grid>div:last-child{padding:38px;border:1px solid rgba(255,255,255,.48);border-radius:28px;background:linear-gradient(135deg,rgba(255,255,255,.42),rgba(255,255,255,.13));backdrop-filter:blur(18px) saturate(125%);-webkit-backdrop-filter:blur(18px) saturate(125%);box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 25px 60px rgba(72,39,12,.07)}
+    .contact-form{padding:28px;border:1px solid rgba(255,255,255,.2);border-radius:28px;background:linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.035));backdrop-filter:blur(18px) saturate(130%);-webkit-backdrop-filter:blur(18px) saturate(130%);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 25px 70px rgba(20,8,2,.16)}
+    .contact-form input,.contact-form textarea{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:15px 16px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+    .contact-form input:focus,.contact-form textarea:focus{border-color:rgba(230,196,143,.72);background:rgba(255,255,255,.09);box-shadow:0 0 0 4px rgba(230,196,143,.08)}
+    .modal-card{border:1px solid rgba(255,255,255,.55);border-radius:30px;background:linear-gradient(135deg,rgba(255,255,255,.72),rgba(255,255,255,.38));backdrop-filter:blur(28px) saturate(140%);-webkit-backdrop-filter:blur(28px) saturate(140%);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 35px 100px rgba(28,12,3,.24)}
+    .modal-close{background:rgba(255,255,255,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
+    .mini-grid div{border:1px solid rgba(255,255,255,.55);border-radius:16px;background:rgba(255,255,255,.28);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.65)}
+    .toast{border:1px solid rgba(255,255,255,.15);background:rgba(33,20,11,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),var(--shadow)}
+
+    /* V4: nodes are placed from live SVG path endpoints in JS. */
+    .tree-wrap{height:790px;overflow:visible}
+    .tree-svg{width:min(690px,58vw);top:35px;z-index:1}
+    .tree-core{z-index:4}
+
+    @media(max-width:900px){.hero-content>div:first-child{padding:27px 24px 28px;border-radius:24px}.about-grid>div:last-child{padding:28px}.contact-form{padding:22px}.project-info{padding:17px 18px;border-radius:18px}}
+    @media(max-width:560px){.hero-content>div:first-child{padding:23px 18px 24px;border-radius:20px}.hero-actions{flex-wrap:wrap}.about-grid>div:last-child{padding:23px;border-radius:22px}.contact-form{border-radius:22px}.project-card{border-radius:22px}.project-info{left:13px;right:13px;bottom:13px}}
+    
+    @media(max-width:900px){.nav{height:72px;padding:0 5vw}.navlinks{display:none}.hero{min-height:680px}.hero-content{padding-bottom:90px}.hero-copy{max-width:340px}.section,.projects{padding:105px 6vw}.intro-grid,.about-grid,.contact-inner{grid-template-columns:1fr;gap:45px}.tree-wrap{height:720px}.tree-svg{width:82vw;top:65px}.branch .label{font-size:8px;padding:10px 12px}.tree-core{bottom:12px}.project-grid{grid-template-columns:1fr}.project-card{min-height:500px}.project-card.small{min-height:310px}.numbers-grid{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.about-image{height:480px}.contact{padding-bottom:90px}.modal-card{padding:42px 28px}.modal-card h3{font-size:42px}}
+    @media(max-width:560px){.brand span{display:none}.navcta{padding:10px 13px}.hero h1{font-size:18vw}.hero-actions .btn{padding:12px 14px}.tree-head{padding:0 8px}.tree-wrap{height:620px}.tree-svg{width:106vw;top:80px}.branch .label{font-size:7px;letter-spacing:.1em;padding:9px 10px}.branch .dot{width:10px;height:10px;border-width:2px}.branch .line{width:22px}.tree-core{bottom:0}.core-ring{width:88px;height:88px}.core-ring img{width:68px;height:68px}.tree-tip{display:none}.numbers-grid{grid-template-columns:1fr}.stat{border-right:0!important;border-bottom:1px solid var(--line)}.stat:last-child{border-bottom:0}.stat b{font-size:48px}.about-image{height:390px}.project-info h3{font-size:31px}.mini-grid{grid-template-columns:1fr}.modal-card h3{font-size:37px}}
+
+    /* KVAAN V3 visual refinement */
+    .hero{align-items:center}
+    .hero-media{inset:0 0 0 44%;background:linear-gradient(90deg,rgba(25,12,4,.18),rgba(25,12,4,.02) 35%,rgba(25,12,4,.12)),url("assets/building.jpg") center/cover;transform:scale(1.045);clip-path:inset(0 round 0 0 0 8vw);animation:heroInRight 1.5s 1s var(--ease) forwards}
+    .hero:after{background:linear-gradient(90deg,rgba(18,9,3,.08),transparent 46%),linear-gradient(180deg,rgba(0,0,0,.04),transparent 48%,rgba(0,0,0,.25))}
+    .hero-content{width:min(1240px,90vw);padding:0;align-items:center;justify-content:flex-start}
+    .hero-content>div:first-child{max-width:650px;padding:34px 40px 40px;background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.025));backdrop-filter:blur(10px) saturate(115%);-webkit-backdrop-filter:blur(10px) saturate(115%);border-radius:28px}
+    .hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(64px,7.4vw,112px);line-height:.78;letter-spacing:-.055em}
+    .hero h1 span{opacity:.88}
+    .hero h1 em{color:#e9ca9c;opacity:.9}
+    .hero-kicker{opacity:.72}
+    .hero-copy{opacity:.68;max-width:470px}
+    .hero-actions{opacity:.9}
+    @keyframes heroInRight{to{transform:scale(1)}}
+
+    /* rounded glass stats / growth divisions */
+    .numbers-grid{border:0;gap:14px}
+    .stat{border:1px solid rgba(113,59,18,.12)!important;border-radius:28px;background:linear-gradient(135deg,rgba(255,255,255,.62),rgba(255,255,255,.26));backdrop-filter:blur(18px) saturate(125%);-webkit-backdrop-filter:blur(18px) saturate(125%);box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 18px 45px rgba(70,37,11,.06);padding:38px 30px}
+    .stat b{font-family:"Cormorant Garamond",serif;font-size:66px}
+    .stat span{display:inline-block;margin-top:7px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.35);border:1px solid rgba(113,59,18,.10);backdrop-filter:blur(8px)}
+
+    /* Nodes keep glass labels; coordinates come from SVG geometry. */
+    .tree-wrap{height:760px}
+    .branch{z-index:8}
+    .branch .dot{flex:0 0 auto}
+    .branch .label{border-radius:18px;padding:13px 17px;font-family:"DM Sans",sans-serif}
+    .tree-core{bottom:0}
+    .tree-core p{font-family:"DM Sans",sans-serif}
+
+    @media(max-width:900px){
+      .hero-media{inset:0 0 0 30%;clip-path:inset(0 round 0 0 0 7vw)}
+      .hero-content{padding-bottom:0}
+      .hero-content>div:first-child{max-width:590px;padding:28px 25px 30px}
+      .tree-wrap{height:720px}
+      .tree-svg{width:min(690px,72vw);top:45px}
+      .branch .label{padding:10px 12px}
+    }
+    @media(max-width:560px){
+      .hero{min-height:720px;align-items:flex-end}
+      .hero-media{inset:0 0 36% 0;clip-path:none;background:linear-gradient(180deg,rgba(25,12,4,.02),rgba(25,12,4,.15) 45%,rgba(25,12,4,.55)),url("assets/building.jpg") center/cover}
+      .hero:after{background:linear-gradient(180deg,transparent 35%,rgba(18,9,3,.76) 72%,rgba(18,9,3,.92))}
+      .hero-content{padding-bottom:55px}
+      .hero-content>div:first-child{background:linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.025));padding:24px 18px 25px}
+      .hero h1{font-size:18vw}
+      .numbers-grid{gap:10px}.stat{padding:30px 22px;border-radius:24px}
+      .tree-wrap{height:650px}
+      .tree-svg{width:100vw;top:70px}
+      .branch .label{font-size:7px;padding:9px 10px;border-radius:14px}
+      .branch .line{width:16px}
+    }
+
+    /* Tree nodes: compact label height on small screens so neighbouring labels never overlap (dots stay pinned to branch tips) */
+    @media(max-width:700px),(min-width:901px) and (max-width:1000px){.branch .label{padding-top:5px;padding-bottom:5px;line-height:1.2}}
+
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.loader,.hero-media,.tree-section .draw,.marquee-track,.core-ring{animation:none!important}.reveal{opacity:1;transform:none;transition:none}.cursor,.cursor-dot{display:none!important}}
+  </style>
+</head>
+<body>
+  <div class="loader" id="loader"><div class="loader-inner"><img class="loader-mark" src="assets/logo.jpg" alt="KVAAN"><div class="loader-line"><i></i></div></div></div>
+  <div class="progress" id="progress"></div><div class="noise"></div><div class="cursor" id="cursor"></div><div class="cursor-dot" id="cursorDot"></div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="#top"><img src="assets/logo.jpg" alt="KVAAN Group logo"><span>KVAAN GROUP</span></a>
+    <nav class="navlinks"><a href="#vision">Vision</a><a href="#network">Divisions</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+    <a class="navcta magnetic" href="#contact">Enquire</a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-media" id="heroMedia"></div>
+      <div class="hero-content">
+        <div>
+          <div class="hero-kicker">Real Estate · Architecture · Permanence</div>
+          <h1><span>Spaces that</span><span><em>shape</em> lives.</span></h1>
+          <p class="hero-copy">KVAAN Group creates considered real estate — places with identity, lasting value and a distinctly human scale.</p>
+          <div class="hero-actions"><a class="btn primary magnetic" href="#projects">Explore projects ↗</a><a class="btn magnetic" href="#network">Explore divisions ↓</a></div>
+        </div>
+      </div>
+      <div class="scrollcue">Scroll to discover</div><div class="scroll-arrow">↓</div>
+    </section>
+
+    <div class="marquee"><div class="marquee-track"><span>Residential <b>✦</b></span><span>Villas & Estates <b>✦</b></span><span>Commercial <b>✦</b></span><span>Mixed Use <b>✦</b></span><span>Hospitality <b>✦</b></span><span>Future Projects <b>✦</b></span><span>Residential <b>✦</b></span><span>Villas & Estates <b>✦</b></span><span>Commercial <b>✦</b></span><span>Mixed Use <b>✦</b></span><span>Hospitality <b>✦</b></span><span>Future Projects <b>✦</b></span></div></div>
+
+    <section class="section intro" id="vision">
+      <div class="intro-grid">
+        <div class="reveal"><div class="kicker">01 / The KVAAN idea</div><h2>Built with clarity.<br>Designed to endure.</h2></div>
+        <p class="reveal delay-1">From the first line on a drawing to the final detail in a lobby, great real estate is a balance of architecture, experience and long-term thinking. KVAAN is designed to feel relevant today — and valuable for years to come.</p>
+      </div>
+    </section>
+
+    <section class="tree-section" id="network">
+      <div class="tree-head reveal"><div class="kicker">02 / KVAAN ecosystem</div><h2>One mark. Many possibilities.</h2><p>The KVAAN symbol becomes the navigation system. Each live branch is a real button — ready for your projects, divisions and future developments.</p></div>
+      <div class="tree-wrap reveal">
+        <button class="branch left branch-1" data-path="6" data-modal="residential" aria-label="Open Project 01"><span class="label">Project 01</span><span class="line"></span><span class="dot"></span></button>
+        <button class="branch left branch-2" data-path="4" data-modal="villas" aria-label="Open Project 02"><span class="label">Project 02</span><span class="line"></span><span class="dot"></span></button>
+        <button class="branch left branch-3" data-path="0" data-modal="hospitality" aria-label="Open Project 03"><span class="label">Project 03</span><span class="line"></span><span class="dot"></span></button>
+        <button class="branch right branch-4" data-path="7" data-modal="commercial" aria-label="Open Project 04"><span class="dot"></span><span class="line"></span><span class="label">Project 04</span></button>
+        <button class="branch right branch-5" data-path="5" data-modal="mixed" aria-label="Open Project 05"><span class="dot"></span><span class="line"></span><span class="label">Project 05</span></button>
+        <button class="branch right branch-6" data-path="1" data-modal="future" aria-label="Open Project 06"><span class="dot"></span><span class="line"></span><span class="label">Project 06</span></button>
+        <svg class="tree-svg" viewBox="0 0 650 650" role="img" aria-label="KVAAN Group branching mark">
+          <path class="tree-stroke draw" d="M325 585 C325 510 330 445 325 382 C320 319 282 257 215 205 C180 178 150 163 110 158"/>
+          <path class="tree-stroke draw" d="M325 585 C325 510 320 445 325 382 C330 319 368 257 435 205 C470 178 500 163 540 158"/>
+          <path class="tree-stroke draw" d="M325 385 C325 325 291 280 255 241 C222 205 185 183 154 168"/>
+          <path class="tree-stroke draw" d="M325 385 C325 325 359 280 395 241 C428 205 465 183 496 168"/>
+          <path class="tree-stroke draw" d="M325 305 C325 255 300 215 276 182 C253 150 226 127 198 112"/>
+          <path class="tree-stroke draw" d="M325 305 C325 255 350 215 374 182 C397 150 424 127 452 112"/>
+          <path class="tree-stroke draw" d="M325 232 C325 196 325 167 325 135 C325 109 314 86 294 62"/>
+          <path class="tree-stroke draw" d="M325 232 C325 196 325 167 325 135 C325 109 336 86 356 62"/>
+        </svg>
+        <div class="tree-core"><div class="core-ring"><img src="assets/logo.jpg" alt="KVAAN mark"></div><p>KVAAN GROUP</p></div>
+        <div class="tree-tip">Select a branch to explore</div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="section-top reveal"><div><div class="kicker" style="color:#cba36d">03 / Selected projects</div><h2 class="section-title">Places with<br>presence.</h2></div><p>A scalable project showcase is already built in. Replace the placeholder names, details and images as your real developments launch.</p></div>
+      <div class="project-grid">
+        <article class="project-card reveal tilt"><span class="project-index">01 / FLAGSHIP</span><img src="assets/residency.jpg" alt="KVAAN development exterior"><div class="project-info"><span class="tag">Residential · Coming Soon</span><h3>KVAAN Residences</h3><p>Contemporary residences · Premium urban address</p></div></article>
+        <div class="stack">
+          <article class="project-card small reveal delay-1 tilt"><span class="project-index">02 / COMMERCIAL</span><img src="assets/office.jpg" alt="KVAAN office interior"><div class="project-info"><span class="tag">Commercial</span><h3>KVAAN Business House</h3><p>Workspaces built around people.</p></div></article>
+          <article class="project-card small reveal delay-2 tilt"><span class="project-index">03 / FUTURE</span><img src="assets/billboard.jpg" alt="KVAAN outdoor development branding"><div class="project-info"><span class="tag">Future Project</span><h3>Your next project.</h3><p>Duplicate this card when your portfolio expands.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="numbers section">
+      <div class="numbers-grid">
+        <div class="stat reveal"><b data-count="6">0</b><span>Growth divisions</span></div><div class="stat reveal delay-1"><b data-count="3">0</b><span>Core visual assets</span></div><div class="stat reveal delay-2"><b data-count="24">0</b><span>Hour enquiry access</span></div><div class="stat reveal"><b>∞</b><span>Room to grow</span></div>
+      </div>
+    </section>
+
+    <section class="section about" id="about"><div class="about-grid"><div class="about-image reveal"><img src="assets/office.jpg" alt="KVAAN Group interior"></div><div class="reveal delay-1"><div class="kicker">04 / Who we are</div><h2>A new chapter in real estate.</h2><p>KVAAN Group is built around a simple principle: every development should have a reason to exist. We bring together design, detail and disciplined execution to create places people want to return to.</p><div class="about-list"><div><span>Design-led thinking</span><strong>01</strong></div><div><span>Long-term value</span><strong>02</strong></div><div><span>Human-scale experience</span><strong>03</strong></div></div></div></div></section>
+
+    <section class="section contact" id="contact"><div class="contact-inner"><div class="reveal"><div class="kicker" style="color:#d6b88b">05 / Start a conversation</div><h2>Let’s build<br>what’s next.</h2><p>Use this section for sales enquiries, investor conversations or project partnerships. The frontend is ready to connect with your CRM, email or WhatsApp workflow.</p></div><form class="contact-form reveal delay-1" id="contactForm"><input required placeholder="Your name" aria-label="Your name"><input required type="email" placeholder="Email address" aria-label="Email address"><input placeholder="Phone number" aria-label="Phone number"><textarea placeholder="Tell us about your requirement" aria-label="Requirement"></textarea><button class="btn primary magnetic" type="submit">Send enquiry ↗</button><div class="form-note" id="formNote">Demo form — connect your backend later.</div></form></div></section>
+  </main>
+
+  <footer><span>© 2026 KVAAN GROUP</span><span>Real estate · design · permanence</span></footer>
+
+  <div class="modal" id="modal" aria-hidden="true"><div class="modal-card"><button class="modal-close" aria-label="Close">×</button><div class="kicker" id="modalKicker"></div><h3 id="modalTitle"></h3><p id="modalText"></p><div class="mini-grid" id="modalStats"></div><a class="btn dark" href="#contact" id="modalCTA" style="margin-top:24px">Discuss this division ↗</a></div></div>
+  <div class="toast" id="toast">Enquiry captured in demo mode.</div>
+
+  <script>
+    const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+    const loader=$('#loader'); window.addEventListener('load',()=>setTimeout(()=>loader.classList.add('done'),900));
+    const nav=$('#nav'), progress=$('#progress'), heroMedia=$('#heroMedia');
+    function onScroll(){const y=scrollY; nav.classList.toggle('scrolled',y>45); const h=document.documentElement.scrollHeight-innerHeight; progress.style.width=(h>0?y/h*100:0)+'%'; if(heroMedia && y<innerHeight*1.2) heroMedia.style.transform=`translateY(${y*.08}px) scale(1.06)`;}
+    addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible'); if(e.target.matches('.numbers-grid')) countNumbers(); if(e.target.matches('.tree-section')||e.target.matches('.tree-wrap')) positionBranchNodes();}}),{threshold:.14}); $$('.reveal,.numbers-grid,.tree-section').forEach(el=>io.observe(el));
+    let counted=false; function countNumbers(){if(counted)return; counted=true; $$('[data-count]').forEach(el=>{const end=+el.dataset.count; const start=performance.now(); const duration=1100; function tick(now){const p=Math.min(1,(now-start)/duration),v=Math.round((1-Math.pow(1-p,4))*end);el.textContent=v;if(p<1)requestAnimationFrame(tick)} requestAnimationFrame(tick)})}
+
+    const data={
+      residential:{k:'Residential',title:'Homes with a point of view.',text:'A dedicated branch for residential towers, apartments and branded communities. Add location, unit mix, amenities, plans and live project CTAs here.',stats:[['Type','Residences'],['Status','Coming soon'],['CTA','View project']]},
+      villas:{k:'Villas & Estates',title:'Private, considered living.',text:'Use this branch for villas, plotted developments and premium estates. Each future project can become its own card and dedicated detail page.',stats:[['Type','Villas'],['Status','Upcoming'],['System','Scalable']]},
+      hospitality:{k:'Hospitality',title:'Destinations people remember.',text:'A home for hotels, resorts, serviced residences and experience-led developments — ready for your future hospitality portfolio.',stats:[['Type','Hospitality'],['Status','Planned'],['Focus','Experience']]},
+      commercial:{k:'Commercial',title:'Workspaces that perform.',text:'Showcase office, retail and business developments with location, specifications, availability, investment information and enquiry actions.',stats:[['Type','Commercial'],['Status','Active'],['CTA','Details']]},
+      mixed:{k:'Mixed Use',title:'More than one destination.',text:'Integrated developments combining living, work, retail and hospitality inside one connected KVAAN ecosystem.',stats:[['Type','Mixed use'],['Status','Planned'],['Scale','Flexible']]},
+      future:{k:'Future Projects',title:'The portfolio keeps growing.',text:'Keep this branch for new categories, land opportunities or projects that do not yet have a public launch. Add them whenever you are ready.',stats:[['System','Scalable'],['Projects','Add anytime'],['Setup','Ready']]}
+    };
+    const modal=$('#modal'); function openModal(key,btn){const d=data[key]; $$('.branch').forEach(b=>b.classList.remove('active'));btn?.classList.add('active');$('#modalKicker').textContent=d.k;$('#modalTitle').textContent=d.title;$('#modalText').textContent=d.text;$('#modalStats').innerHTML=d.stats.map(s=>`<div><b>${s[1]}</b><span>${s[0]}</span></div>`).join('');modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.classList.add('is-locked')}
+    function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('is-locked');setTimeout(()=>$$('.branch').forEach(b=>b.classList.remove('active')),250)}
+    $$('.branch').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.modal,b)));$('.modal-close').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});$('#modalCTA').addEventListener('click',closeModal);
+
+    /* Branch nodes: dot centre is pinned to the exact endpoint of each SVG branch path.
+       Uses the SVG's live rendered box + viewBox (no hardcoded offsets, no CSS transform dependence). */
+    function positionBranchNodes(){
+      const wrap=$('.tree-wrap');
+      const svg=wrap && wrap.querySelector('.tree-svg');
+      if(!wrap||!svg) return;
+      const vb=svg.viewBox.baseVal;
+      const wr=wrap.getBoundingClientRect(), sr=svg.getBoundingClientRect();
+      if(!vb||!vb.width||!vb.height||!sr.width||!sr.height) return;
+      const k=Math.min(sr.width/vb.width, sr.height/vb.height);           /* uniform scale (xMidYMid meet) */
+      const ox=(sr.left-wr.left)+(sr.width-vb.width*k)/2-vb.x*k;          /* svg user-space origin inside .tree-wrap */
+      const oy=(sr.top-wr.top)+(sr.height-vb.height*k)/2-vb.y*k;
+      const paths=svg.querySelectorAll('path.tree-stroke');
+      $$('.branch').forEach(btn=>{
+        const path=paths[+btn.dataset.path];
+        const dot=btn.querySelector('.dot');
+        if(!path||!dot) return;
+        const tip=path.getPointAtLength(path.getTotalLength());           /* branch endpoint in SVG units */
+        const tx=ox+tip.x*k, ty=oy+tip.y*k;                                /* endpoint in .tree-wrap px */
+        const br=btn.getBoundingClientRect(), dr=dot.getBoundingClientRect();
+        const cx=dr.left+dr.width/2-br.left, cy=dr.top+dr.height/2-br.top; /* dot centre inside its button */
+        btn.style.right='auto'; btn.style.bottom='auto';
+        btn.style.left=(tx-cx)+'px';
+        btn.style.top=(ty-cy)+'px';
+      });
+    }
+    const scheduleBranchNodes=()=>{positionBranchNodes();requestAnimationFrame(()=>requestAnimationFrame(positionBranchNodes))};
+    addEventListener('load', scheduleBranchNodes);
+    addEventListener('resize', scheduleBranchNodes);
+    addEventListener('orientationchange', scheduleBranchNodes);
+    if(window.visualViewport) visualViewport.addEventListener('resize', scheduleBranchNodes);
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleBranchNodes);
+    if(window.ResizeObserver){const ro=new ResizeObserver(positionBranchNodes); const tw=$('.tree-wrap'), ts=$('.tree-svg'); if(tw) ro.observe(tw); if(ts) ro.observe(ts); $$('.branch').forEach(b=>ro.observe(b));}
+    scheduleBranchNodes();
+
+    // subtle 3D project cards
+    $$('.tilt').forEach(card=>card.addEventListener('pointermove',e=>{if(matchMedia('(pointer:fine)').matches){const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform=`perspective(900px) rotateX(${-y*3}deg) rotateY(${x*3}deg) translateY(-4px)`}}));
+    $$('.tilt').forEach(card=>card.addEventListener('pointerleave',()=>card.style.transform=''));
+
+    // magnetic buttons
+    $$('.magnetic').forEach(el=>el.addEventListener('pointermove',e=>{if(!matchMedia('(pointer:fine)').matches)return;const r=el.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;el.style.transform=`translate(${x*.12}px,${y*.12}px)`}));
+    $$('.magnetic').forEach(el=>el.addEventListener('pointerleave',()=>el.style.transform=''));
+
+    // custom cursor
+    const cursor=$('#cursor'),dot=$('#cursorDot'); addEventListener('pointermove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px'}); $$('a,button,.project-card').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.width='58px';cursor.style.height='58px'});el.addEventListener('mouseleave',()=>{cursor.style.width='42px';cursor.style.height='42px'})});
+
+    $('#contactForm').addEventListener('submit',e=>{e.preventDefault();e.target.reset();$('#formNote').textContent='Thanks — demo enquiry captured. Connect your CRM/email endpoint here.';const t=$('#toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)});
+  </script>
+</body>
+</html>
