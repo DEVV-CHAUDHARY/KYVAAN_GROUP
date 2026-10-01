@@ -470,7 +470,144 @@
     @media(max-width:900px){.project-modal-shell{grid-template-columns:1fr}.project-modal-visual{min-height:420px}.project-modal-copy{padding:34px 28px 30px}.project-modal-copy h3{font-size:46px}.project-live-strip{margin-top:18px}}
     @media(max-width:560px){.branch.live-project .label{min-width:126px;padding:9px 10px!important}.branch.live-project .node-name{font-size:15px}.branch.live-project .node-kicker{font-size:6px}.branch.live-project .node-location{font-size:6px}.project-modal-visual{min-height:330px}.project-modal-copy{padding:28px 20px 24px}.project-modal-copy h3{font-size:38px}.project-modal-copy .mini-grid{grid-template-columns:1fr 1fr}.project-modal-gallery{left:14px;right:14px}.project-modal-caption{left:18px;right:18px}.project-modal-caption strong{font-size:34px}}
 
-  </style>
+  
+/* KVAAN CONTACT / LOCATION / SOCIALS */
+.contact-inner{grid-template-columns:1fr 1fr;align-items:start}
+.contact-details{margin-top:34px;display:grid;gap:22px;max-width:560px}
+.contact-detail{display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:start}
+.contact-detail-icon{width:38px;height:38px;border:1px solid rgba(255,255,255,.18);border-radius:50%;display:grid;place-items:center;color:#e6c48f;font-size:14px}
+.contact-detail small{display:block;color:#bda78f;text-transform:uppercase;letter-spacing:.16em;font-size:9px;margin-bottom:6px}
+.contact-detail a,.contact-detail span{color:#fff3e2;line-height:1.7;font-size:13px}
+.contact-detail a:hover{color:#e6c48f}
+.contact-socials{display:flex;flex-wrap:wrap;gap:9px;margin-top:4px}
+.contact-socials a{padding:9px 13px;border:1px solid rgba(255,255,255,.18);border-radius:999px;color:#f6e7d2;font-size:9px;letter-spacing:.14em;text-transform:uppercase;transition:.3s}
+.contact-socials a:hover{background:rgba(255,255,255,.09);border-color:rgba(230,196,143,.65);transform:translateY(-2px)}
+.contact-map{margin-top:54px;border:1px solid rgba(255,255,255,.14);border-radius:28px;overflow:hidden;min-height:420px;background:#24160d;box-shadow:0 25px 70px rgba(0,0,0,.18)}
+.contact-map iframe{display:block;width:100%;height:420px;border:0;filter:saturate(.78) contrast(1.02) sepia(.08)}
+.contact-email-note{margin-top:16px;color:#c7b196;font-size:10px;line-height:1.7}
+.contact-email-note a{color:#e6c48f}
+footer{align-items:center}
+.footer-socials{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.footer-socials a{transition:color .25s}
+.footer-socials a:hover{color:#e6c48f}
+@media(max-width:900px){.contact-inner{grid-template-columns:1fr}.contact-map{margin-top:38px}.contact-map iframe{height:360px}.footer-socials{justify-content:flex-start}}
+@media(max-width:560px){.contact-details{margin-top:26px}.contact-detail{grid-template-columns:34px 1fr}.contact-detail-icon{width:32px;height:32px;font-size:12px}.contact-detail a,.contact-detail span{font-size:12px}.contact-map{border-radius:20px}.contact-map iframe{height:330px}footer{flex-direction:column;align-items:flex-start}.footer-socials{gap:10px}}
+
+  
+
+/* =========================================================
+   KVAAN FINAL MOBILE + HERO FIX
+   ========================================================= */
+
+/* HERO: clean editorial copy — absolutely no glass panel behind text */
+.hero-content>div:first-child{
+  padding:0!important;
+  margin:0!important;
+  background:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  overflow:visible!important;
+}
+.hero-content>div:first-child::before,
+.hero-content>div:first-child::after{
+  content:none!important;
+  display:none!important;
+}
+.hero-video{
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+/* Mobile tree: keep every label inside the viewport while the DOT remains
+   positioned by the existing SVG endpoint calculation. */
+@media(max-width:700px){
+  .tree-wrap{
+    width:100%;
+    height:700px!important;
+    min-height:700px!important;
+    overflow:hidden!important;
+  }
+
+  .tree-svg{
+    width:100vw!important;
+    max-width:none!important;
+    left:50%!important;
+    top:70px!important;
+  }
+
+  .branch{
+    max-width:calc(100vw - 12px);
+    white-space:normal!important;
+  }
+
+  /* Left-side labels face inward/outward correctly instead of being pushed
+     beyond the left edge. The DOT itself stays at the calculated endpoint. */
+  .branch.left{flex-direction:row-reverse!important;}
+  .branch.right{flex-direction:row!important;}
+
+  .branch .label{
+    font-size:8px!important;
+    line-height:1.25!important;
+    letter-spacing:.07em!important;
+    padding:7px 9px!important;
+    border-radius:11px!important;
+    white-space:normal!important;
+    max-width:105px;
+    overflow-wrap:anywhere;
+  }
+
+  .branch.live-project .label{
+    min-width:0!important;
+    max-width:105px!important;
+    text-align:left;
+  }
+
+  .branch .node-kicker{
+    font-size:6px!important;
+    letter-spacing:.12em!important;
+    margin-bottom:2px!important;
+  }
+
+  .branch .node-name{
+    font-size:8px!important;
+    line-height:1.1!important;
+  }
+
+  .branch .node-location{
+    font-size:6.5px!important;
+    line-height:1.15!important;
+  }
+
+  .branch .line{width:14px!important;}
+  .branch .dot{width:9px!important;height:9px!important;flex-basis:9px!important;}
+}
+
+@media(max-width:420px){
+  .tree-wrap{height:680px!important;min-height:680px!important;}
+  .branch .label{font-size:7px!important;max-width:92px!important;padding:6px 8px!important;}
+  .branch.live-project .label{max-width:92px!important;}
+  .branch .node-name{font-size:7px!important;}
+  .branch .node-kicker{font-size:5.5px!important;}
+  .branch .node-location{font-size:6px!important;}
+  .branch .line{width:10px!important;}
+}
+
+/* Prevent the hero copy from dominating the film on smaller phones. */
+@media(max-width:560px){
+  .hero-content{
+    width:88vw!important;
+    padding-bottom:62px!important;
+  }
+  .hero-content>div:first-child{width:100%!important;max-width:100%!important;}
+  .hero h1{max-width:100%!important;}
+  .hero-copy{max-width:310px!important;}
+}
+
+</style>
 </head>
 <body>
   <div class="loader" id="loader"><div class="loader-inner"><img class="loader-mark" src="assets/logo.jpg" alt="KVAAN"><div class="loader-line"><i></i></div></div></div>
@@ -551,12 +688,17 @@
 
     <section class="section about" id="about"><div class="about-grid"><div class="about-image reveal"><img src="assets/office.jpg" alt="KVAAN Group interior"></div><div class="reveal delay-1"><div class="kicker">04 / Who we are</div><h2>A new chapter in real estate.</h2><p>KVAAN Group is built around a simple principle: every development should have a reason to exist. We bring together design, detail and disciplined execution to create places people want to return to.</p><div class="about-list"><div><span>Design-led thinking</span><strong>01</strong></div><div><span>Long-term value</span><strong>02</strong></div><div><span>Human-scale experience</span><strong>03</strong></div></div></div></div></section>
 
-    <section class="section contact" id="contact"><div class="contact-inner"><div class="reveal"><div class="kicker" style="color:#d6b88b">05 / Start a conversation</div><h2>Let’s build<br>what’s next.</h2><p>Use this section for sales enquiries, investor conversations or project partnerships. The frontend is ready to connect with your CRM, email or WhatsApp workflow.</p></div><form class="contact-form reveal delay-1" id="contactForm"><input required placeholder="Your name" aria-label="Your name"><input required type="email" placeholder="Email address" aria-label="Email address"><input placeholder="Phone number" aria-label="Phone number"><textarea placeholder="Tell us about your requirement" aria-label="Requirement"></textarea><button class="btn primary magnetic" type="submit">Send enquiry ↗</button><div class="form-note" id="formNote">Demo form — connect your backend later.</div></form></div></section>
+    <section class="section contact" id="contact"><div class="contact-inner"><div class="reveal"><div class="kicker" style="color:#d6b88b">05 / Start a conversation</div><h2>Let’s build<br>what’s next.</h2><p>For sales enquiries, project information, investor conversations or partnerships, reach KVAAN GROUP directly.</p><div class="contact-details">
+        <div class="contact-detail"><div class="contact-detail-icon">⌖</div><div><small>Visit us</small><span>Behind Priyakantju Temple, Burja Rd, Vrindavan, Mathura — 281003, Uttar Pradesh</span></div></div>
+        <div class="contact-detail"><div class="contact-detail-icon">✉</div><div><small>Email</small><a href="mailto:Info@kyvaangroup.com">Info@kyvaangroup.com</a></div></div>
+        <div class="contact-detail"><div class="contact-detail-icon">☎</div><div><small>Phone</small><a href="tel:+919897646552">+91 9897646552</a></div></div>
+        <div class="contact-detail"><div class="contact-detail-icon">◎</div><div><small>Follow KVAAN</small><div class="contact-socials"><a href="https://youtube.com/@kyvaangroup?si=lgT-RUVj4NrESYB9" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://www.instagram.com/kyvaangroup?stkn=MXdhbGRuN2JlbzZzNg==" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/share/1Hq2WmcVj8/" target="_blank" rel="noopener noreferrer">Facebook</a></div></div></div>
+      </div></div><form class="contact-form reveal delay-1" id="contactForm"><input required name="Your name" placeholder="Your name" aria-label="Your name"><input required type="email" name="Email address" placeholder="Email address" aria-label="Email address"><input name="Phone number" placeholder="Phone number" aria-label="Phone number"><textarea name="Tell us about your requirement" placeholder="Tell us about your requirement" aria-label="Requirement"></textarea><button class="btn primary magnetic" type="submit">Send enquiry ↗</button><div class="contact-email-note">Prefer direct email? <a href="mailto:Info@kyvaangroup.com">Info@kyvaangroup.com</a></div><div class="form-note" id="formNote">Your enquiry will be prepared for KVAAN GROUP.</div></form></div><div class="contact-map reveal"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d221.06202400132054!2d77.64148788494647!3d27.56274683403803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39736d53f89d8c11%3A0xfc9b8d0d709b5d0e!2sKyvaan%20group!5e0!3m2!1sen!2sin!4v1790866570946!5m2!1sen!2sin" title="KVAAN Group location map" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></section>
   </main>
 
-  <footer><span>© 2026 KVAAN GROUP</span><span>Real estate · design · permanence</span></footer>
+  <footer><span>© 2026 KVAAN GROUP</span><div class="footer-socials"><a href="mailto:Info@kyvaangroup.com">Info@kyvaangroup.com</a><a href="tel:+919897646552">+91 9897646552</a><a href="https://youtube.com/@kyvaangroup?si=lgT-RUVj4NrESYB9" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://www.instagram.com/kyvaangroup?stkn=MXdhbGRuN2JlbzZzNg==" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/share/1Hq2WmcVj8/" target="_blank" rel="noopener noreferrer">Facebook</a></div><span>Real estate · design · permanence</span></footer>
 
-  <div class="modal" id="modal" aria-hidden="true"><div class="modal-card" id="modalCard"><button class="modal-close" aria-label="Close">×</button><div id="modalProjectShell" class="project-modal-shell" hidden><div class="project-modal-visual"><span class="project-modal-badge" id="modalBadge"></span><img id="modalHeroImage" src="" alt=""><div class="project-gallery" id="modalGallery"></div><div class="project-modal-caption"><small id="modalCaptionKicker"></small><strong id="modalCaptionTitle"></strong></div></div><div class="project-modal-copy"><div class="kicker" id="modalProjectKicker"></div><h3 id="modalProjectTitle"></h3><p id="modalProjectText"></p><div class="mini-grid" id="modalProjectStats"></div><div class="project-modal-actions"><a class="btn dark" href="#contact" id="modalProjectCTA">Enquire about this project ↗</a><a class="btn" id="modalBrochure" href="#" target="_blank" rel="noopener" hidden>View layout / brochure ↗</a></div><div class="project-modal-note" id="modalProjectNote"></div></div></div><div id="modalDivisionShell"><div class="kicker" id="modalKicker"></div><h3 id="modalTitle"></h3><p id="modalText"></p><div class="mini-grid" id="modalStats"></div><a class="btn dark" href="#contact" id="modalCTA" style="margin-top:24px">Discuss this division ↗</a></div></div></div>
+  <div class="modal" id="modal" aria-hidden="true"><div class="modal-card" id="modalCard"><button class="modal-close" aria-label="Close">×</button><div id="modalProjectShell" class="project-modal-shell" hidden><div class="project-modal-visual"><span class="project-modal-badge" id="modalBadge"></span><img id="modalHeroImage" src="" alt=""><div class="project-gallery" id="modalGallery"></div><div class="project-modal-caption"><small id="modalCaptionKicker"></small><strong id="modalCaptionTitle"></strong></div></div><div class="project-modal-copy"><div class="kicker" id="modalProjectKicker"></div><h3 id="modalProjectTitle"></h3><p id="modalProjectText"></p><div class="mini-grid" id="modalProjectStats"></div><div class="project-modal-actions"><a class="btn dark" href="#contact" id="modalProjectCTA">Enquire about this project ↗</a><a class="btn" href="mailto:Info@kyvaangroup.com?subject=Project%20Enquiry%20—%20KVAAN%20GROUP" id="modalEmailCTA">Email KVAAN ↗</a><a class="btn" id="modalBrochure" href="#" target="_blank" rel="noopener" hidden>View layout / brochure ↗</a></div><div class="project-modal-note" id="modalProjectNote"></div></div></div><div id="modalDivisionShell"><div class="kicker" id="modalKicker"></div><h3 id="modalTitle"></h3><p id="modalText"></p><div class="mini-grid" id="modalStats"></div><a class="btn dark" href="#contact" id="modalCTA" style="margin-top:24px">Discuss this division ↗</a></div></div></div>
   <div class="toast" id="toast">Enquiry captured in demo mode.</div>
 
   <script>
@@ -674,7 +816,39 @@
     // custom cursor
     const cursor=$('#cursor'),dot=$('#cursorDot'); addEventListener('pointermove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';dot.style.left=e.clientX+'px';dot.style.top=e.clientY+'px'}); $$('a,button,.project-card').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.width='58px';cursor.style.height='58px'});el.addEventListener('mouseleave',()=>{cursor.style.width='42px';cursor.style.height='42px'})});
 
-    $('#contactForm').addEventListener('submit',e=>{e.preventDefault();e.target.reset();$('#formNote').textContent='Thanks — demo enquiry captured. Connect your CRM/email endpoint here.';const t=$('#toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)});
+    $('#contactForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target);const subject='Website Enquiry — KVAAN GROUP';const body=`Name: ${f.get('Your name')||''}\nEmail: ${f.get('Email address')||''}\nPhone: ${f.get('Phone number')||''}\nRequirement: ${f.get('Tell us about your requirement')||''}`;window.location.href=`mailto:Info@kyvaangroup.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;e.target.reset();$('#formNote').textContent='Your email app is opening to send the enquiry to KVAAN GROUP.';const t=$('#toast');t.textContent='Opening your email app…';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)});
   </script>
+
+
+<script>
+/* KVAAN hero video: explicitly start playback on browsers that delay
+   autoplay, while preserving muted/inline mobile playback. */
+(function(){
+  const video=document.getElementById('heroMedia');
+  if(!video) return;
+  video.muted=true;
+  video.defaultMuted=true;
+  video.playsInline=true;
+
+  const tryPlay=()=>{
+    const p=video.play();
+    if(p && typeof p.catch==='function') p.catch(()=>{});
+  };
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',tryPlay,{once:true});
+  }else{
+    tryPlay();
+  }
+  window.addEventListener('load',tryPlay,{once:true});
+  ['touchstart','pointerdown','click'].forEach(evt=>{
+    window.addEventListener(evt,tryPlay,{once:true,passive:true});
+  });
+  document.addEventListener('visibilitychange',()=>{
+    if(!document.hidden) tryPlay();
+  });
+})();
+</script>
+
 </body>
 </html>
