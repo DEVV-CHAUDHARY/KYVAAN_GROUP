@@ -120,19 +120,6 @@
     @media(max-width:900px){.nav{height:72px;padding:0 5vw}.navlinks{display:none}.hero{min-height:680px}.hero-content{padding-bottom:90px}.hero-copy{max-width:340px}.section,.projects{padding:105px 6vw}.intro-grid,.about-grid,.contact-inner{grid-template-columns:1fr;gap:45px}.tree-wrap{height:720px}.tree-svg{width:82vw;top:65px}.branch .label{font-size:8px;padding:10px 12px}.tree-core{bottom:12px}.project-grid{grid-template-columns:1fr}.project-card{min-height:500px}.project-card.small{min-height:310px}.numbers-grid{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.about-image{height:480px}.contact{padding-bottom:90px}.modal-card{padding:42px 28px}.modal-card h3{font-size:42px}}
     @media(max-width:560px){.brand span{display:none}.navcta{padding:10px 13px}.hero h1{font-size:18vw}.hero-actions .btn{padding:12px 14px}.tree-head{padding:0 8px}.tree-wrap{height:620px}.tree-svg{width:106vw;top:80px}.branch .label{font-size:7px;letter-spacing:.1em;padding:9px 10px}.branch .dot{width:10px;height:10px;border-width:2px}.branch .line{width:22px}.tree-core{bottom:0}.core-ring{width:88px;height:88px}.core-ring img{width:68px;height:68px}.tree-tip{display:none}.numbers-grid{grid-template-columns:1fr}.stat{border-right:0!important;border-bottom:1px solid var(--line)}.stat:last-child{border-bottom:0}.stat b{font-size:48px}.about-image{height:390px}.project-info h3{font-size:31px}.mini-grid{grid-template-columns:1fr}.modal-card h3{font-size:37px}}
 
-    /* KVAAN V3 visual refinement */
-    .hero{align-items:center}
-    .hero-media{inset:0 0 0 44%;background:linear-gradient(90deg,rgba(25,12,4,.18),rgba(25,12,4,.02) 35%,rgba(25,12,4,.12)),url("assets/building.jpg") center/cover;transform:scale(1.045);clip-path:inset(0 round 0 0 0 8vw);animation:heroInRight 1.5s 1s var(--ease) forwards}
-    .hero:after{background:linear-gradient(90deg,rgba(18,9,3,.08),transparent 46%),linear-gradient(180deg,rgba(0,0,0,.04),transparent 48%,rgba(0,0,0,.25))}
-    .hero-content{width:min(1240px,90vw);padding:0;align-items:center;justify-content:flex-start}
-    .hero-content>div:first-child{max-width:650px;padding:34px 40px 40px;background:linear-gradient(135deg,rgba(255,255,255,.10),rgba(255,255,255,.025));backdrop-filter:blur(10px) saturate(115%);-webkit-backdrop-filter:blur(10px) saturate(115%);border-radius:28px}
-    .hero h1{font-family:"Cormorant Garamond",serif;font-size:clamp(64px,7.4vw,112px);line-height:.78;letter-spacing:-.055em}
-    .hero h1 span{opacity:.88}
-    .hero h1 em{color:#e9ca9c;opacity:.9}
-    .hero-kicker{opacity:.72}
-    .hero-copy{opacity:.68;max-width:470px}
-    .hero-actions{opacity:.9}
-    @keyframes heroInRight{to{transform:scale(1)}}
 
     /* rounded glass stats / growth divisions */
     .numbers-grid{border:0;gap:14px}
@@ -149,20 +136,11 @@
     .tree-core p{font-family:"DM Sans",sans-serif}
 
     @media(max-width:900px){
-      .hero-media{inset:0 0 0 30%;clip-path:inset(0 round 0 0 0 7vw)}
-      .hero-content{padding-bottom:0}
-      .hero-content>div:first-child{max-width:590px;padding:28px 25px 30px}
       .tree-wrap{height:720px}
       .tree-svg{width:min(690px,72vw);top:45px}
       .branch .label{padding:10px 12px}
     }
     @media(max-width:560px){
-      .hero{min-height:720px;align-items:flex-end}
-      .hero-media{inset:0 0 36% 0;clip-path:none;background:linear-gradient(180deg,rgba(25,12,4,.02),rgba(25,12,4,.15) 45%,rgba(25,12,4,.55)),url("assets/building.jpg") center/cover}
-      .hero:after{background:linear-gradient(180deg,transparent 35%,rgba(18,9,3,.76) 72%,rgba(18,9,3,.92))}
-      .hero-content{padding-bottom:55px}
-      .hero-content>div:first-child{background:linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.025));padding:24px 18px 25px}
-      .hero h1{font-size:18vw}
       .numbers-grid{gap:10px}.stat{padding:30px 22px;border-radius:24px}
       .tree-wrap{height:650px}
       .tree-svg{width:100vw;top:70px}
@@ -174,6 +152,324 @@
     @media(max-width:700px),(min-width:901px) and (max-width:1000px){.branch .label{padding-top:5px;padding-bottom:5px;line-height:1.2}}
 
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.loader,.hero-media,.tree-section .draw,.marquee-track,.core-ring{animation:none!important}.reveal{opacity:1;transform:none;transition:none}.cursor,.cursor-dot{display:none!important}}
+
+    /* =========================================================
+       KVAAN HERO FILM — FINAL
+       Video replaces the still image without competing with copy.
+       Desktop: film lives on the right; copy stays in a clean left zone.
+       Mobile: film occupies the upper zone; copy gets its own lower zone.
+       ========================================================= */
+    .hero{
+      background:#21140b;
+      isolation:isolate;
+      align-items:flex-end;
+    }
+
+    /* Full-bleed brand film: whole clip visible (logo stays centred), no diagonal
+       crop — text reads over a gradient instead of sitting in a separate panel. */
+    .hero-media.hero-video{
+      position:absolute;
+      z-index:0;
+      inset:0;
+      left:0;
+      right:0;
+      top:0;
+      bottom:0;
+      width:100%;
+      height:100%;
+      min-width:0;
+      max-width:none;
+      object-fit:cover;
+      object-position:center 42%;
+      display:block;
+      margin:0;
+      border:0;
+      outline:0;
+      background:#21140b;
+      transform:scale(1.025);
+      opacity:0;
+      animation:heroVideoIn 1.4s .25s var(--ease) forwards;
+      clip-path:none;
+      filter:saturate(.94) contrast(.98);
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+      background:
+        linear-gradient(90deg,
+          rgba(22,13,6,.86) 0%,
+          rgba(22,13,6,.64) 26%,
+          rgba(22,13,6,.26) 48%,
+          rgba(22,13,6,.04) 66%,
+          transparent 82%),
+        linear-gradient(180deg,
+          rgba(0,0,0,.30) 0%,
+          transparent 30%,
+          transparent 56%,
+          rgba(0,0,0,.58) 100%);
+    }
+
+    .hero:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:2;
+      pointer-events:none;
+      background:radial-gradient(circle at 76% 46%,rgba(255,244,222,.06),transparent 30%);
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:4;
+      width:min(1240px,90vw);
+      margin:0 auto;
+      padding:0 0 9vh;
+      color:#fff;
+      display:flex;
+      align-items:flex-end;
+      justify-content:flex-start;
+    }
+
+    .hero-content>div:first-child{
+      width:min(560px,46vw);
+      max-width:560px;
+      padding:0;
+      margin:0;
+      background:none!important;
+      border:0!important;
+      border-radius:0!important;
+      box-shadow:none!important;
+      backdrop-filter:none!important;
+      -webkit-backdrop-filter:none!important;
+    }
+
+    .hero-kicker{
+      color:rgba(255,248,235,.76);
+      text-shadow:0 2px 20px rgba(0,0,0,.18);
+    }
+
+    .hero h1{
+      max-width:560px;
+      margin-top:22px;
+      text-shadow:0 10px 40px rgba(0,0,0,.16);
+    }
+
+    .hero h1 span{
+      width:max-content;
+      max-width:100%;
+    }
+
+    .hero-copy{
+      max-width:450px;
+      color:rgba(255,248,235,.74);
+      text-shadow:0 4px 24px rgba(0,0,0,.18);
+    }
+
+    .hero-actions{
+      flex-wrap:wrap;
+    }
+
+    .hero-actions .btn{
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+    }
+
+    .scrollcue,.scroll-arrow{
+      z-index:5;
+    }
+
+    @keyframes heroVideoIn{
+      from{opacity:0;transform:scale(1.055)}
+      to{opacity:1;transform:scale(1.025)}
+    }
+
+    @media(max-width:900px){
+      .hero{
+        min-height:720px;
+        align-items:flex-end;
+      }
+
+      .hero-media.hero-video{
+        left:0;
+        right:0;
+        bottom:39%;
+        width:100%;
+        min-width:0;
+        height:61%;
+        object-fit:cover;
+        object-position:center center;
+        clip-path:none;
+        transform:scale(1.025);
+      }
+
+      .hero:before{
+        background:
+          linear-gradient(180deg,
+            rgba(25,14,7,.04) 0%,
+            rgba(25,14,7,.02) 35%,
+            rgba(25,14,7,.34) 61%,
+            rgba(25,14,7,.98) 100%),
+          linear-gradient(90deg,rgba(25,14,7,.10),transparent 60%);
+      }
+
+      .hero:after{
+        background:linear-gradient(180deg,transparent 45%,rgba(25,14,7,.28) 63%,rgba(25,14,7,.20) 100%);
+      }
+
+      .hero-content{
+        width:min(92vw,680px);
+        padding:0 0 48px;
+        align-items:flex-end;
+      }
+
+      .hero-content>div:first-child{
+        width:100%;
+        max-width:600px;
+      }
+
+      .hero h1{
+        font-size:clamp(58px,10vw,92px);
+        line-height:.82;
+        margin-top:16px;
+      }
+
+      .hero-copy{
+        max-width:470px;
+        margin-top:20px;
+      }
+
+      .hero-actions{
+        margin-top:22px;
+      }
+
+      .scrollcue{
+        bottom:20px;
+      }
+
+      .scroll-arrow{
+        bottom:17px;
+      }
+    }
+
+    @media(max-width:560px){
+      .hero{
+        min-height:760px;
+      }
+
+      .hero-media.hero-video{
+        bottom:43%;
+        height:57%;
+        object-position:center center;
+      }
+
+      .hero:before{
+        background:
+          linear-gradient(180deg,
+            rgba(25,14,7,.02) 0%,
+            rgba(25,14,7,.02) 35%,
+            rgba(25,14,7,.20) 53%,
+            rgba(25,14,7,.96) 76%,
+            #21140b 100%);
+      }
+
+      .hero-content{
+        width:90vw;
+        padding-bottom:68px;
+      }
+
+      .hero-content>div:first-child{
+        max-width:100%;
+      }
+
+      .hero-kicker{
+        font-size:8px;
+        letter-spacing:.25em;
+      }
+
+      .hero h1{
+        font-size:17vw;
+        line-height:.80;
+        letter-spacing:-.06em;
+        margin-top:14px;
+      }
+
+      .hero-copy{
+        font-size:12.5px;
+        line-height:1.65;
+        max-width:330px;
+        margin-top:18px;
+      }
+
+      .hero-actions{
+        gap:8px;
+        margin-top:19px;
+      }
+
+      .hero-actions .btn{
+        padding:12px 14px;
+        font-size:8px;
+      }
+
+      .scrollcue{
+        display:none;
+      }
+
+      .scroll-arrow{
+        right:5vw;
+        bottom:20px;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      .hero-media.hero-video{
+        animation:none;
+        opacity:1;
+        transform:none;
+      }
+    }
+
+  
+    /* LIVE PROJECT NODES + PROJECT DETAIL EXPERIENCE */
+    .branch.live-project .label{min-width:168px;text-align:left;padding:12px 15px!important}
+    .branch.live-project .node-kicker{display:block;font-size:7px;letter-spacing:.18em;text-transform:uppercase;opacity:.62;margin-bottom:4px}
+    .branch.live-project .node-name{display:block;font-family:"Cormorant Garamond",serif;font-size:19px;line-height:.98;font-weight:600;letter-spacing:-.02em}
+    .branch.live-project .node-location{display:block;font-size:7px;letter-spacing:.11em;text-transform:uppercase;opacity:.58;margin-top:5px}
+    .branch.live-project:hover .node-kicker,.branch.live-project.active .node-kicker{opacity:.82}
+
+    .modal-card.project-modal{width:min(1020px,100%);max-height:min(88vh,900px);overflow:auto;padding:0;background:#f8f0e2;color:var(--ink)}
+    .project-modal-shell{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(330px,.95fr);min-height:560px}
+    .project-modal-visual{position:relative;min-height:560px;background:#2a180c;overflow:hidden}
+    .project-modal-visual img{width:100%;height:100%;display:block;object-fit:cover;transition:opacity .35s ease,transform .7s var(--ease)}
+    .project-modal-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(24,11,3,.38) 78%,rgba(24,11,3,.66))}
+    .project-modal-badge{position:absolute;left:22px;top:22px;z-index:2;padding:8px 11px;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:rgba(255,255,255,.1);color:#fff;font-size:8px;letter-spacing:.18em;text-transform:uppercase;backdrop-filter:blur(12px)}
+    .project-modal-caption{position:absolute;left:24px;right:24px;bottom:22px;z-index:2;color:#fff}
+    .project-modal-caption small{display:block;font-size:8px;letter-spacing:.2em;text-transform:uppercase;opacity:.7;margin-bottom:7px}
+    .project-modal-caption strong{font-family:"Cormorant Garamond",serif;font-size:42px;font-weight:500;line-height:.92;display:block}
+    .project-gallery{position:absolute;left:20px;right:20px;bottom:92px;z-index:3;display:flex;gap:7px;overflow:auto;padding-bottom:2px}
+    .project-gallery button{width:58px;height:42px;flex:0 0 58px;padding:0;border:1px solid rgba(255,255,255,.25);border-radius:8px;overflow:hidden;background:rgba(0,0,0,.25)}
+    .project-gallery button.active{border-color:#e7c694;box-shadow:0 0 0 2px rgba(231,198,148,.18)}
+    .project-gallery img{width:100%;height:100%;object-fit:cover;display:block}
+    .project-modal-copy{padding:54px 48px 44px;display:flex;flex-direction:column;justify-content:center}
+    .project-modal-copy .kicker{margin-bottom:2px}
+    .project-modal-copy h3{margin:8px 0 14px;font-size:56px}
+    .project-modal-copy p{margin:0;color:#6d6153;line-height:1.8;font-size:14px}
+    .project-modal-copy .mini-grid{grid-template-columns:repeat(2,1fr);margin-top:25px}
+    .project-modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+    .project-modal-actions .btn{font-size:9px}
+    .project-modal-note{font-size:9px;color:#8a7865;line-height:1.6;margin-top:13px}
+    .project-modal .modal-close{z-index:8;right:16px;top:16px;color:#fff;border-color:rgba(255,255,255,.28);background:rgba(25,12,4,.28)}
+    .project-modal .modal-close.dark-close{color:var(--brown);background:rgba(255,255,255,.65)}
+    .project-card.project-link{cursor:pointer}
+    .project-card.project-link:focus-visible{outline:2px solid #e6c18a;outline-offset:4px}
+    .project-live-strip{max-width:1250px;margin:26px auto 0;display:flex;justify-content:space-between;align-items:center;gap:18px;color:#d8c8b7;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+    .project-live-strip:before{content:"";height:1px;flex:1;background:rgba(255,255,255,.12)}
+    @media(max-width:900px){.project-modal-shell{grid-template-columns:1fr}.project-modal-visual{min-height:420px}.project-modal-copy{padding:34px 28px 30px}.project-modal-copy h3{font-size:46px}.project-live-strip{margin-top:18px}}
+    @media(max-width:560px){.branch.live-project .label{min-width:126px;padding:9px 10px!important}.branch.live-project .node-name{font-size:15px}.branch.live-project .node-kicker{font-size:6px}.branch.live-project .node-location{font-size:6px}.project-modal-visual{min-height:330px}.project-modal-copy{padding:28px 20px 24px}.project-modal-copy h3{font-size:38px}.project-modal-copy .mini-grid{grid-template-columns:1fr 1fr}.project-modal-gallery{left:14px;right:14px}.project-modal-caption{left:18px;right:18px}.project-modal-caption strong{font-size:34px}}
+
   </style>
 </head>
 <body>
@@ -188,7 +484,9 @@
 
   <main id="top">
     <section class="hero">
-      <div class="hero-media" id="heroMedia"></div>
+      <video class="hero-media hero-video" id="heroMedia" autoplay muted loop playsinline preload="auto" poster="assets/hero-kvaan-poster.jpg" aria-label="KVAAN Group brand film">
+        <source src="assets/hero-kvaan.mp4" type="video/mp4">
+      </video>
       <div class="hero-content">
         <div>
           <div class="hero-kicker">Real Estate · Architecture · Permanence</div>
@@ -213,9 +511,9 @@
       <div class="tree-head reveal"><div class="kicker">02 / KVAAN ecosystem</div><h2>One mark. Many possibilities.</h2><p>The KVAAN symbol becomes the navigation system. Each live branch is a real button — ready for your projects, divisions and future developments.</p></div>
       <div class="tree-wrap reveal">
         <button class="branch left branch-1" data-path="6" data-modal="residential" aria-label="Open Project 01"><span class="label">Project 01</span><span class="line"></span><span class="dot"></span></button>
-        <button class="branch left branch-2" data-path="4" data-modal="villas" aria-label="Open Project 02"><span class="label">Project 02</span><span class="line"></span><span class="dot"></span></button>
+        <button class="branch left branch-2 live-project" data-path="4" data-modal="radhika" aria-label="Open Project 02 — Radhika Greens"><span class="label"><span class="node-kicker">02 / Live project</span><span class="node-name">Radhika Greens</span><span class="node-location">Vrindavan</span></span><span class="line"></span><span class="dot"></span></button>
         <button class="branch left branch-3" data-path="0" data-modal="hospitality" aria-label="Open Project 03"><span class="label">Project 03</span><span class="line"></span><span class="dot"></span></button>
-        <button class="branch right branch-4" data-path="7" data-modal="commercial" aria-label="Open Project 04"><span class="dot"></span><span class="line"></span><span class="label">Project 04</span></button>
+        <button class="branch right branch-4 live-project" data-path="7" data-modal="shriJi" aria-label="Open Project 04 — Shri Ji Cottage &amp; Farm's"><span class="dot"></span><span class="line"></span><span class="label"><span class="node-kicker">04 / Live project</span><span class="node-name">Shri Ji Cottage</span><span class="node-location">Jait · Vrindavan</span></span></button>
         <button class="branch right branch-5" data-path="5" data-modal="mixed" aria-label="Open Project 05"><span class="dot"></span><span class="line"></span><span class="label">Project 05</span></button>
         <button class="branch right branch-6" data-path="1" data-modal="future" aria-label="Open Project 06"><span class="dot"></span><span class="line"></span><span class="label">Project 06</span></button>
         <svg class="tree-svg" viewBox="0 0 650 650" role="img" aria-label="KVAAN Group branching mark">
@@ -234,14 +532,15 @@
     </section>
 
     <section class="projects" id="projects">
-      <div class="section-top reveal"><div><div class="kicker" style="color:#cba36d">03 / Selected projects</div><h2 class="section-title">Places with<br>presence.</h2></div><p>A scalable project showcase is already built in. Replace the placeholder names, details and images as your real developments launch.</p></div>
+      <div class="section-top reveal"><div><div class="kicker" style="color:#cba36d">03 / Selected projects</div><h2 class="section-title">Places with<br>presence.</h2></div><p>Two live KVAAN projects are now connected directly to the ecosystem. Tap a project here or select its branch above for the full project story, visuals and layout documents.</p></div>
       <div class="project-grid">
-        <article class="project-card reveal tilt"><span class="project-index">01 / FLAGSHIP</span><img src="assets/residency.jpg" alt="KVAAN development exterior"><div class="project-info"><span class="tag">Residential · Coming Soon</span><h3>KVAAN Residences</h3><p>Contemporary residences · Premium urban address</p></div></article>
+        <article class="project-card reveal tilt project-link" data-modal-trigger="radhika" role="button" tabindex="0" aria-label="Open Radhika Greens project"><span class="project-index">02 / VRINDAVAN</span><img src="assets/projects/radhika-greens/aerial.jpg" alt="Radhika Greens aerial view"><div class="project-info"><span class="tag">Premium Farm Houses</span><h3>Radhika Greens</h3><p>Luxury farm plots · Private pool living · Vrindavan</p></div></article>
         <div class="stack">
-          <article class="project-card small reveal delay-1 tilt"><span class="project-index">02 / COMMERCIAL</span><img src="assets/office.jpg" alt="KVAAN office interior"><div class="project-info"><span class="tag">Commercial</span><h3>KVAAN Business House</h3><p>Workspaces built around people.</p></div></article>
-          <article class="project-card small reveal delay-2 tilt"><span class="project-index">03 / FUTURE</span><img src="assets/billboard.jpg" alt="KVAAN outdoor development branding"><div class="project-info"><span class="tag">Future Project</span><h3>Your next project.</h3><p>Duplicate this card when your portfolio expands.</p></div></article>
+          <article class="project-card small reveal delay-1 tilt project-link" data-modal-trigger="shriJi" role="button" tabindex="0" aria-label="Open Shri Ji Cottage and Farms project"><span class="project-index">04 / JAIT</span><img src="assets/projects/shri-ji-cottage/site-layout.jpg" alt="Shri Ji Cottage and Farms site layout"><div class="project-info"><span class="tag">Cottage &amp; Farms</span><h3>Shri Ji Cottage</h3><p>Jait, Vrindavan · Planned farm community layout</p></div></article>
+          <article class="project-card small reveal delay-2 tilt"><span class="project-index">06 / FUTURE</span><img src="assets/billboard.jpg" alt="KVAAN future project placeholder"><div class="project-info"><span class="tag">Portfolio expansion</span><h3>More to come.</h3><p>New KVAAN projects can plug into the same experience.</p></div></article>
         </div>
       </div>
+      <div class="project-live-strip reveal">Live project profiles · connected to the KVAAN tree</div>
     </section>
 
     <section class="numbers section">
@@ -257,30 +556,77 @@
 
   <footer><span>© 2026 KVAAN GROUP</span><span>Real estate · design · permanence</span></footer>
 
-  <div class="modal" id="modal" aria-hidden="true"><div class="modal-card"><button class="modal-close" aria-label="Close">×</button><div class="kicker" id="modalKicker"></div><h3 id="modalTitle"></h3><p id="modalText"></p><div class="mini-grid" id="modalStats"></div><a class="btn dark" href="#contact" id="modalCTA" style="margin-top:24px">Discuss this division ↗</a></div></div>
+  <div class="modal" id="modal" aria-hidden="true"><div class="modal-card" id="modalCard"><button class="modal-close" aria-label="Close">×</button><div id="modalProjectShell" class="project-modal-shell" hidden><div class="project-modal-visual"><span class="project-modal-badge" id="modalBadge"></span><img id="modalHeroImage" src="" alt=""><div class="project-gallery" id="modalGallery"></div><div class="project-modal-caption"><small id="modalCaptionKicker"></small><strong id="modalCaptionTitle"></strong></div></div><div class="project-modal-copy"><div class="kicker" id="modalProjectKicker"></div><h3 id="modalProjectTitle"></h3><p id="modalProjectText"></p><div class="mini-grid" id="modalProjectStats"></div><div class="project-modal-actions"><a class="btn dark" href="#contact" id="modalProjectCTA">Enquire about this project ↗</a><a class="btn" id="modalBrochure" href="#" target="_blank" rel="noopener" hidden>View layout / brochure ↗</a></div><div class="project-modal-note" id="modalProjectNote"></div></div></div><div id="modalDivisionShell"><div class="kicker" id="modalKicker"></div><h3 id="modalTitle"></h3><p id="modalText"></p><div class="mini-grid" id="modalStats"></div><a class="btn dark" href="#contact" id="modalCTA" style="margin-top:24px">Discuss this division ↗</a></div></div></div>
   <div class="toast" id="toast">Enquiry captured in demo mode.</div>
 
   <script>
     const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
     const loader=$('#loader'); window.addEventListener('load',()=>setTimeout(()=>loader.classList.add('done'),900));
     const nav=$('#nav'), progress=$('#progress'), heroMedia=$('#heroMedia');
-    function onScroll(){const y=scrollY; nav.classList.toggle('scrolled',y>45); const h=document.documentElement.scrollHeight-innerHeight; progress.style.width=(h>0?y/h*100:0)+'%'; if(heroMedia && y<innerHeight*1.2) heroMedia.style.transform=`translateY(${y*.08}px) scale(1.06)`;}
+    function onScroll(){const y=scrollY; nav.classList.toggle('scrolled',y>45); const h=document.documentElement.scrollHeight-innerHeight; progress.style.width=(h>0?y/h*100:0)+'%'; if(heroMedia && y<innerHeight*1.2) heroMedia.style.transform=`translateY(${y*.045}px) scale(1.025)`;}
     addEventListener('scroll',onScroll,{passive:true}); onScroll();
+    if(heroMedia && heroMedia.tagName==='VIDEO'){
+      const revealHeroVideo=()=>heroMedia.classList.add('is-ready');
+      heroMedia.addEventListener('loadeddata',revealHeroVideo,{once:true});
+      if(heroMedia.readyState>=2) revealHeroVideo();
+    }
 
     const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible'); if(e.target.matches('.numbers-grid')) countNumbers(); if(e.target.matches('.tree-section')||e.target.matches('.tree-wrap')) positionBranchNodes();}}),{threshold:.14}); $$('.reveal,.numbers-grid,.tree-section').forEach(el=>io.observe(el));
     let counted=false; function countNumbers(){if(counted)return; counted=true; $$('[data-count]').forEach(el=>{const end=+el.dataset.count; const start=performance.now(); const duration=1100; function tick(now){const p=Math.min(1,(now-start)/duration),v=Math.round((1-Math.pow(1-p,4))*end);el.textContent=v;if(p<1)requestAnimationFrame(tick)} requestAnimationFrame(tick)})}
 
     const data={
-      residential:{k:'Residential',title:'Homes with a point of view.',text:'A dedicated branch for residential towers, apartments and branded communities. Add location, unit mix, amenities, plans and live project CTAs here.',stats:[['Type','Residences'],['Status','Coming soon'],['CTA','View project']]},
-      villas:{k:'Villas & Estates',title:'Private, considered living.',text:'Use this branch for villas, plotted developments and premium estates. Each future project can become its own card and dedicated detail page.',stats:[['Type','Villas'],['Status','Upcoming'],['System','Scalable']]},
-      hospitality:{k:'Hospitality',title:'Destinations people remember.',text:'A home for hotels, resorts, serviced residences and experience-led developments — ready for your future hospitality portfolio.',stats:[['Type','Hospitality'],['Status','Planned'],['Focus','Experience']]},
-      commercial:{k:'Commercial',title:'Workspaces that perform.',text:'Showcase office, retail and business developments with location, specifications, availability, investment information and enquiry actions.',stats:[['Type','Commercial'],['Status','Active'],['CTA','Details']]},
-      mixed:{k:'Mixed Use',title:'More than one destination.',text:'Integrated developments combining living, work, retail and hospitality inside one connected KVAAN ecosystem.',stats:[['Type','Mixed use'],['Status','Planned'],['Scale','Flexible']]},
-      future:{k:'Future Projects',title:'The portfolio keeps growing.',text:'Keep this branch for new categories, land opportunities or projects that do not yet have a public launch. Add them whenever you are ready.',stats:[['System','Scalable'],['Projects','Add anytime'],['Setup','Ready']]}
+      residential:{type:'division',k:'Residential',title:'Homes with a point of view.',text:'A dedicated branch for residential towers, apartments and branded communities. Add location, unit mix, amenities, plans and live project CTAs here.',stats:[['Type','Residences'],['Status','Coming soon'],['CTA','View project']]},
+      villas:{type:'division',k:'Villas & Estates',title:'Private, considered living.',text:'Use this branch for villas, plotted developments and premium estates. Each future project can become its own card and dedicated detail page.',stats:[['Type','Villas'],['Status','Upcoming'],['System','Scalable']]},
+      hospitality:{type:'division',k:'Hospitality',title:'Destinations people remember.',text:'A home for hotels, resorts, serviced residences and experience-led developments — ready for your future hospitality portfolio.',stats:[['Type','Hospitality'],['Status','Planned'],['Focus','Experience']]},
+      commercial:{type:'division',k:'Commercial',title:'Workspaces that perform.',text:'Showcase office, retail and business developments with location, specifications, availability, investment information and enquiry actions.',stats:[['Type','Commercial'],['Status','Active'],['CTA','Details']]},
+      mixed:{type:'division',k:'Mixed Use',title:'More than one destination.',text:'Integrated developments combining living, work, retail and hospitality inside one connected KVAAN ecosystem.',stats:[['Type','Mixed use'],['Status','Planned'],['Scale','Flexible']]},
+      future:{type:'division',k:'Future Projects',title:'The portfolio keeps growing.',text:'Keep this branch for new categories, land opportunities or projects that do not yet have a public launch. Add them whenever you are ready.',stats:[['System','Scalable'],['Projects','Add anytime'],['Setup','Ready']]},
+      radhika:{type:'project',k:'02 / Live project',badge:'Premium farm houses',title:'Radhika Greens',location:'Vrindavan',text:'Radhika Greens is presented in the supplied KVAAN project material as a premium farm-house / villa-plot development in Vrindavan, designed around green surroundings, private-pool living and a gated community experience.',stats:[['Location','Vrindavan'],['Plot size','250–330 sq yd'],['Format','Farm plots + farmhouse living'],['Highlights','Private pools · green spaces']],images:['assets/projects/radhika-greens/aerial.jpg','assets/projects/radhika-greens/gate.jpg','assets/projects/radhika-greens/pool.jpg','assets/projects/radhika-greens/night-aerial.jpg'],brochure:'assets/projects/radhika-greens/master-layout.pdf',note:'Project information and imagery shown here are based on the material supplied for this website build. Verify final approvals, availability, pricing and specifications with KVAAN Group before publishing them as live sales claims.'},
+      shriJi:{type:'project',k:'04 / Live project',badge:'Cottage & farms',title:'Shri Ji Cottage & Farms',location:'Jait · Vrindavan',text:'Shri Ji Cottage & Farms is represented by the supplied site-layout drawing for a planned farm/cottage community at Jait, Vrindavan. The layout includes plotted blocks, internal roads and a larger road-facing access arrangement.',stats:[['Location','Jait · Vrindavan'],['Format','Cottage + farm plots'],['Access','60 ft road shown'],['Plan','Site layout supplied']],images:['assets/projects/shri-ji-cottage/site-layout.jpg'],brochure:'assets/projects/shri-ji-cottage/site-layout.pdf',note:'The visual is a supplied layout drawing, not a substitute for sanctioned plans, title/approval documents or current availability. Confirm final project details with KVAAN Group.'}
     };
-    const modal=$('#modal'); function openModal(key,btn){const d=data[key]; $$('.branch').forEach(b=>b.classList.remove('active'));btn?.classList.add('active');$('#modalKicker').textContent=d.k;$('#modalTitle').textContent=d.title;$('#modalText').textContent=d.text;$('#modalStats').innerHTML=d.stats.map(s=>`<div><b>${s[1]}</b><span>${s[0]}</span></div>`).join('');modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.classList.add('is-locked')}
+    const modal=$('#modal');
+    const modalCard=$('#modalCard');
+    function openModal(key,btn){
+      const d=data[key]; if(!d) return;
+      $$('.branch').forEach(b=>b.classList.remove('active'));
+      btn?.classList.add('active');
+      const project=d.type==='project';
+      $('#modalProjectShell').hidden=!project;
+      $('#modalDivisionShell').hidden=project;
+      modalCard.classList.toggle('project-modal',project);
+      if(project){
+        $('#modalBadge').textContent=d.badge;
+        $('#modalHeroImage').src=d.images[0];
+        $('#modalHeroImage').alt=d.title+' — KVAAN Group';
+        $('#modalCaptionKicker').textContent=d.location;
+        $('#modalCaptionTitle').textContent=d.title;
+        $('#modalProjectKicker').textContent=d.k;
+        $('#modalProjectTitle').textContent=d.title;
+        $('#modalProjectText').textContent=d.text;
+        $('#modalProjectStats').innerHTML=d.stats.map(s=>`<div><b>${s[1]}</b><span>${s[0]}</span></div>`).join('');
+        $('#modalProjectNote').textContent=d.note||'';
+        const gallery=$('#modalGallery');
+        gallery.innerHTML=d.images.map((src,i)=>`<button type="button" class="${i===0?'active':''}" data-image="${src}" aria-label="View image ${i+1}"><img src="${src}" alt=""></button>`).join('');
+        gallery.querySelectorAll('button').forEach(t=>t.addEventListener('click',()=>{gallery.querySelectorAll('button').forEach(x=>x.classList.remove('active'));t.classList.add('active');$('#modalHeroImage').style.opacity='.35';setTimeout(()=>{$('#modalHeroImage').src=t.dataset.image;$('#modalHeroImage').style.opacity='1'},120)}));
+        const brochure=$('#modalBrochure');
+        brochure.hidden=!d.brochure;
+        if(d.brochure) brochure.href=d.brochure;
+        $('#modalProjectCTA').onclick=()=>{closeModal();};
+      }else{
+        $('#modalKicker').textContent=d.k;
+        $('#modalTitle').textContent=d.title;
+        $('#modalText').textContent=d.text;
+        $('#modalStats').innerHTML=d.stats.map(s=>`<div><b>${s[1]}</b><span>${s[0]}</span></div>`).join('');
+      }
+      modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.classList.add('is-locked');
+    }
     function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.classList.remove('is-locked');setTimeout(()=>$$('.branch').forEach(b=>b.classList.remove('active')),250)}
-    $$('.branch').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.modal,b)));$('.modal-close').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});$('#modalCTA').addEventListener('click',closeModal);
+    $$('.branch').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.modal,b)));
+    $$('.project-link').forEach(card=>{
+      card.addEventListener('click',()=>openModal(card.dataset.modalTrigger));
+      card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openModal(card.dataset.modalTrigger);}});
+    });
+    $('.modal-close').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});$('#modalCTA').addEventListener('click',closeModal);
 
     /* Branch nodes: dot centre is pinned to the exact endpoint of each SVG branch path.
        Uses the SVG's live rendered box + viewBox (no hardcoded offsets, no CSS transform dependence). */
