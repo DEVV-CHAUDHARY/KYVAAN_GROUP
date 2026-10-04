@@ -1,0 +1,368 @@
+@import "tailwindcss";
+
+/* ============================================================
+   KYVAAN GROUP — Editorial architectural theme
+   ------------------------------------------------------------
+   The token NAMES are unchanged so every component keeps its
+   structure; only their VALUES now describe a warm, light,
+   magazine-like palette.
+
+     ink    → page surfaces      (warm ivory / beige family)
+     bone   → typography         (espresso / muted brown)
+     bronze → accent             (muted architectural terracotta)
+
+   `ivory` and `espresso` are fixed and never flip — use them
+   only where type sits directly on photography or film.
+   ============================================================ */
+@theme {
+  /* surfaces */
+  --color-ink: #f8f4ec;   /* primary background — warm ivory */
+  --color-ink-2: #f1e5cf; /* secondary background — soft beige */
+  --color-ink-3: #e9dcc4; /* muted architectural beige */
+
+  /* typography */
+  --color-bone: #241810;   /* deep espresso */
+  --color-bone-2: #76695d; /* warm muted brown */
+
+  /* accent — used sparingly.
+     bronze   = small text & rules (tuned for AA contrast on ivory + beige)
+     bronze-2 = the reference accent #9A5E2E, for large type & hovers */
+  --color-bronze: #8f5629;
+  --color-bronze-2: #9a5e2e;
+  --color-sage: #8c8770;
+
+  /* fixed — photography contexts only */
+  --color-ivory: #f8f4ec;
+  --color-espresso: #241810;
+  --color-line: #ded2c0;
+
+  --font-display: "Cormorant Garamond", "Cormorant", "Times New Roman", serif;
+  --font-body: "Manrope", "Helvetica Neue", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-bone);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #e7d3b6;
+  color: var(--color-espresso);
+}
+
+/* ============================================================
+   Component classes — inside a layer so Tailwind utilities
+   (tracking, colour, size) can still override them per element.
+   ============================================================ */
+@layer components {
+  /* ---------- Typography ---------- */
+  .font-display {
+    font-family: var(--font-display);
+    font-feature-settings: "liga" 1, "kern" 1;
+    letter-spacing: -0.012em;
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.66rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* ---------- Buttons — physical, pill-shaped, quiet ---------- */
+  .btn-primary,
+  .btn-ghost,
+  .btn-light {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 9999px;
+    padding: 0.9rem 1.75rem;
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    transition:
+      background-color 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      scale 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn-primary svg,
+  .btn-ghost svg,
+  .btn-light svg {
+    transition: translate 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn-primary:hover svg,
+  .btn-ghost:hover svg,
+  .btn-light:hover svg {
+    translate: 3px 0;
+  }
+
+  /* primary — ivory pill, thin espresso rule; fills on hover */
+  .btn-primary {
+    background: var(--color-ivory);
+    color: var(--color-espresso);
+    border: 1px solid var(--color-espresso);
+  }
+  .btn-primary:hover {
+    background: var(--color-espresso);
+    color: var(--color-ivory);
+    scale: 1.015;
+  }
+
+  /* ghost — hairline beige rule */
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-bone);
+    border: 1px solid rgba(36, 24, 16, 0.22);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-espresso);
+    background: rgba(36, 24, 16, 0.04);
+    scale: 1.015;
+  }
+
+  /* light — for use over photography and film */
+  .btn-light {
+    background: rgba(248, 244, 236, 0.08);
+    color: var(--color-ivory);
+    border: 1px solid rgba(248, 244, 236, 0.6);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .btn-light:hover {
+    background: var(--color-ivory);
+    color: var(--color-espresso);
+    scale: 1.015;
+  }
+
+  /* ---------- Editorial image frames ---------- */
+  .img-frame {
+    overflow: hidden;
+    border-radius: 18px;
+    isolation: isolate; /* keeps rounded corners during transforms (Safari) */
+    box-shadow: 0 1px 2px rgba(36, 24, 16, 0.05), 0 24px 48px -32px rgba(36, 24, 16, 0.28);
+  }
+  .img-frame img {
+    transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .img-frame:hover img {
+    transform: scale(1.035);
+  }
+
+  /* caption set on top of a photograph */
+  .caption-photo {
+    color: var(--color-ivory);
+    text-shadow: 0 1px 12px rgba(36, 24, 16, 0.55);
+  }
+
+  /* editorial surface card */
+  .card {
+    background: var(--color-ink);
+    border: 1px solid var(--color-line);
+    border-radius: 18px;
+    box-shadow: 0 1px 2px rgba(36, 24, 16, 0.04), 0 18px 40px -30px rgba(36, 24, 16, 0.22);
+  }
+}
+
+/* ---------- Glass — warm ivory, never coloured ----------
+   Declared as a utility so it accepts responsive variants (md:glass). */
+@utility glass {
+  background: rgba(248, 244, 236, 0.84);
+  backdrop-filter: blur(16px) saturate(1.05);
+  -webkit-backdrop-filter: blur(16px) saturate(1.05);
+  border: 1px solid var(--color-line);
+  box-shadow: 0 1px 2px rgba(36, 24, 16, 0.04), 0 16px 36px -24px rgba(36, 24, 16, 0.22);
+}
+
+/* ---------- Custom cursor ---------- */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+/* ---------- Marquee ---------- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 48s linear infinite;
+}
+
+/* ---------- Canopy: a very slow breath of light. The tree never moves. ---------- */
+@keyframes canopy-breathe {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.canopy {
+  animation: canopy-breathe 16s ease-in-out infinite;
+}
+
+/* ---------- Particles ---------- */
+@keyframes float-particle {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: var(--po, 0.5);
+  }
+  88% {
+    opacity: var(--po, 0.5);
+  }
+  100% {
+    transform: translate3d(var(--px, 20px), var(--py, -90px), 0);
+    opacity: 0;
+  }
+}
+.particle {
+  position: absolute;
+  border-radius: 9999px;
+  background: var(--color-bronze-2);
+  filter: blur(1px);
+  animation: float-particle linear infinite;
+  pointer-events: none;
+}
+
+/* ---------- Ambient light drift ---------- */
+@keyframes light-drift {
+  0%,
+  100% {
+    transform: rotate(-6deg) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: rotate(7deg) scale(1.1);
+    opacity: 0.72;
+  }
+}
+.light-drift {
+  animation: light-drift 28s ease-in-out infinite;
+}
+
+/* ---------- Scroll indicator ---------- */
+@keyframes scroll-line {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+.animate-scroll-line {
+  animation: scroll-line 3s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.75);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+.pulse-ring {
+  animation: pulse-ring 3.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+/* ---------- Branch draw ---------- */
+@keyframes draw-path {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.tree-draw-path {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: draw-path 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ---------- Text reveal (mask only; motion handled by framer-motion) ---------- */
+.reveal-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em; /* room for Cormorant descenders */
+}
+
+/* ---------- Paper grain ---------- */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.045;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+/* ---------- Focus visibility ---------- */
+:focus-visible {
+  outline: 1.5px solid var(--color-bronze);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee,
+  .canopy,
+  .particle,
+  .light-drift,
+  .animate-scroll-line,
+  .pulse-ring,
+  .tree-draw-path {
+    animation: none !important;
+  }
+  .tree-draw-path {
+    stroke-dashoffset: 0 !important;
+  }
+  .img-frame img {
+    transition: none;
+  }
+}
+
+/* ---------- Hide scrollbars on horizontal rails ---------- */
+.no-bar {
+  scrollbar-width: none;
+}
+.no-bar::-webkit-scrollbar {
+  display: none;
+}
