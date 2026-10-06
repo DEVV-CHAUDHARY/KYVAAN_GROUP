@@ -71,9 +71,11 @@ export default function Navbar() {
             aria-label="KYVAAN Group — back to top"
             data-cursor="link"
           >
-            <Logo
-              imgClassName="h-9 md:h-11 transition-opacity duration-700 group-hover:opacity-80"
-            />
+            <span className="flex items-center rounded-full bg-ivory px-2.5 py-1.5 md:px-3 md:py-2">
+              <Logo
+                imgClassName="h-8 md:h-10 transition-opacity duration-700 group-hover:opacity-80"
+              />
+            </span>
           </button>
 
           <nav className="hidden items-center gap-9 lg:gap-11 md:flex" aria-label="Primary">
