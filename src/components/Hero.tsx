@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { BRAND } from "../data/brand";
-import Logo from "./Logo";
 
 export default function Hero({ onExplore }: { onExplore: (id: string) => void }) {
   const [armed, setArmed] = useState(false);
@@ -60,18 +59,6 @@ export default function Hero({ onExplore }: { onExplore: (id: string) => void })
       </div>
 
       <div className="relative z-10 mx-auto mt-14 max-w-5xl px-8 text-center md:mt-16">
-        {/* the official KYVAAN logo — replaceable image asset */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.4, duration: 1.2, ease: "easeOut" }}
-          className="mb-8 flex justify-center"
-        >
-          <div className="rounded-[22px] border border-ivory/20 bg-ivory/90 px-5 py-3 shadow-[0_18px_50px_rgba(36,24,16,0.22)] backdrop-blur-sm md:px-7 md:py-4">
-            <Logo imgClassName="h-20 md:h-28" />
-          </div>
-        </motion.div>
-
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
