@@ -54,6 +54,8 @@ export const CONTACT = {
   email: "Info@kyvaangroup.com",
   phone: "+91 9084203961",
   phoneHref: "+919084203961",
+  phone2: "+91 9897646552",
+  phoneHref2: "+919897646552",
   whatsapp: "919084203961",
   address: [
     "Behind Priyakantju Temple",
