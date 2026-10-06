@@ -75,6 +75,14 @@ export default function ContactSection({ preselect }: { preselect?: string }) {
               <PhoneIcon />
               {CONTACT.phone}
             </a>
+            <a
+              href={`tel:${CONTACT.phoneHref2}`}
+              className="group mt-2.5 flex items-center gap-3 text-sm font-light text-bone/75 transition-colors hover:text-bronze-2"
+              data-cursor="link"
+            >
+              <PhoneIcon />
+              {CONTACT.phone2}
+            </a>
             <p className="mt-3.5 flex items-start gap-3 text-sm font-light leading-relaxed text-bone/60">
               <PinIcon />
               <span>
