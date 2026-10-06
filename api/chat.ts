@@ -71,6 +71,31 @@ export default async function handler(req: any, res: any) {
 
     if (!response.ok) {
       console.error("OpenAI API error:", data?.error);
+
+      if (data?.error?.code === "insufficient_quota" || data?.error?.type === "insufficient_quota") {
+        const lastUserMessage =
+          safeMessages.filter((m: any) => m.role === "user").at(-1)?.content?.toLowerCase() || "";
+
+        let fallback =
+          "Namaste! Main abhi KYVAAN ke basic details mein help kar sakta hoon. Projects, location, contact ya enquiry ke baare mein pooch sakte hain.";
+
+        if (lastUserMessage.includes("contact") || lastUserMessage.includes("phone") || lastUserMessage.includes("number")) {
+          fallback =
+            "KYVAAN Group se contact karne ke liye WhatsApp/Call: +91 9084203961. Alternate number: +91 9897646552. Email: Info@kyvaangroup.com.";
+        } else if (lastUserMessage.includes("location") || lastUserMessage.includes("address") || lastUserMessage.includes("where")) {
+          fallback =
+            "KYVAAN Group office: Behind Priyakantju Temple, Burja Rd, Vrindavan, Mathura — 281003, Uttar Pradesh.";
+        } else if (lastUserMessage.includes("project") || lastUserMessage.includes("property") || lastUserMessage.includes("project")) {
+          fallback =
+            "KYVAAN Group real estate, architecture aur thoughtfully planned spaces par focus karta hai. Specific project details ke liye WhatsApp par enquiry karein: +91 9084203961.";
+        } else if (lastUserMessage.includes("enquire") || lastUserMessage.includes("enquiry") || lastUserMessage.includes("booking")) {
+          fallback =
+            "Bilkul. Aap KYVAAN Group ki team se WhatsApp par directly enquiry kar sakte hain: +91 9084203961. Main bhi aapko basic information de sakta hoon.";
+        }
+
+        return res.status(200).json({ reply: fallback, degraded: true });
+      }
+
       return res.status(502).json({
         error:
           data?.error?.message ||
