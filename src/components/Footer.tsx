@@ -96,6 +96,13 @@ export default function Footer() {
               >
                 {CONTACT.phone}
               </a>
+              <a
+                href={`tel:${CONTACT.phoneHref2}`}
+                className="mt-1.5 block text-[0.8rem] font-light text-bone/55 transition-colors hover:text-bronze-2"
+                data-cursor="link"
+              >
+                {CONTACT.phone2}
+              </a>
               <p className="mt-3 text-[0.75rem] font-light leading-relaxed text-bone/40">
                 {CONTACT.address.map((line) => (
                   <span key={line} className="block">
