@@ -182,6 +182,13 @@ export default function Navbar() {
                 >
                   {CONTACT.phone}
                 </a>
+                <a
+                  href={`tel:${CONTACT.phoneHref2}`}
+                  className="mt-1.5 block text-sm font-light text-bone/70"
+                  data-cursor="link"
+                >
+                  {CONTACT.phone2}
+                </a>
               </div>
               <p className="text-[0.56rem] uppercase tracking-[0.26em] text-bone/35">
                 Real Estate · Architecture · Permanence
