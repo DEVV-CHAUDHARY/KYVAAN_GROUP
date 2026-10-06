@@ -4,8 +4,8 @@ import { CONTACT } from "../data/brand";
 import { MAPPED_PROJECTS, PROJECTS } from "../data/projects";
 
 /** Region view around Vrindavan / Jait — the verified KYVAAN project area. */
-const OSM_SRC =
-  "https://www.openstreetmap.org/export/embed.html?bbox=77.58%2C27.49%2C77.74%2C27.62&layer=mapnik";
+const GOOGLE_MAPS_EMBED_SRC =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4719.047664145987!2d77.63277123431286!3d27.567273942965862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39736d53f89d8c11%3A0xfc9b8d0d709b5d0e!2sKyvaan%20group!5e0!3m2!1sen!2sin!4v1791285707115!5m2!1sen!2sin";
 
 export default function MapSection({ onOpenProject }: { onOpenProject: (slug: string) => void }) {
   const [active, setActive] = useState<string>(MAPPED_PROJECTS[0]?.slug ?? "");
@@ -32,18 +32,11 @@ export default function MapSection({ onOpenProject }: { onOpenProject: (slug: st
       <div className="relative mx-3 mt-8 h-[60vh] min-h-[420px] overflow-hidden rounded-[22px] border border-line shadow-[0_1px_2px_rgba(36,24,16,0.04),0_30px_60px_-40px_rgba(36,24,16,0.3)] md:mx-6 md:rounded-[28px] lg:mx-10">
         <iframe
           title="Map of the Vrindavan region where KYVAAN projects are located"
-          src={OSM_SRC}
+          src={GOOGLE_MAPS_EMBED_SRC}
           loading="lazy"
           className="absolute inset-0 h-full w-full"
-          style={{
-            border: 0,
-            /* warm, paper-toned cartography — no default bright map colours */
-            filter: "grayscale(1) sepia(0.32) contrast(0.92) brightness(1.03) saturate(0.9)",
-          }}
+          style={{ border: 0 }}
         />
-        <div className="pointer-events-none absolute inset-0 bg-ink-2/35 mix-blend-multiply" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent md:bg-gradient-to-r md:from-ink/85 md:via-ink/15 md:to-transparent" />
-
         <div className="pointer-events-none absolute inset-0 flex items-end p-5 md:items-center md:p-10">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
