@@ -9,6 +9,7 @@ import { HashRouter, Navigate, Route, Routes, useNavigate } from "react-router-d
 import LegalPage from "./pages/LegalPage";
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
+import AssistantWidget from "./components/AssistantWidget";
 import type { TransitionState } from "./utils/transition";
 
 type Phase = "idle" | "cover" | "reveal";
@@ -102,6 +103,7 @@ function Shell() {
       <Cursor />
       <LoadingScreen done={!loading} />
       <Navbar />
+      <AssistantWidget />
 
       <Routes>
         <Route path="/" element={<Home onOpenProject={openProject} />} />
