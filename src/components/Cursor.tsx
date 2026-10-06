@@ -70,7 +70,7 @@ export default function Cursor() {
   return (
     <>
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[90] rounded-full border border-bone/40"
+        className="pointer-events-none fixed left-0 top-0 z-[120] rounded-full border border-bone/40"
         style={{
           x: sx,
           y: sy,
@@ -95,7 +95,7 @@ export default function Cursor() {
         )}
       </motion.div>
       <motion.div
-        className="pointer-events-none fixed left-0 top-0 z-[90] h-1.5 w-1.5 rounded-full bg-bronze-2"
+        className="pointer-events-none fixed left-0 top-0 z-[121] h-1.5 w-1.5 rounded-full bg-bronze-2"
         style={{ x, y, translateX: "-50%", translateY: "-50%" }}
       />
     </>
