@@ -67,7 +67,9 @@ export default function Hero({ onExplore }: { onExplore: (id: string) => void })
           transition={{ delay: 1.4, duration: 1.2, ease: "easeOut" }}
           className="mb-8 flex justify-center"
         >
-          <Logo imgClassName="h-16 md:h-24" />
+          <div className="rounded-[22px] border border-ivory/20 bg-ivory/90 px-5 py-3 shadow-[0_18px_50px_rgba(36,24,16,0.22)] backdrop-blur-sm md:px-7 md:py-4">
+            <Logo imgClassName="h-20 md:h-28" />
+          </div>
         </motion.div>
 
         <motion.p
