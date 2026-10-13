@@ -45,7 +45,6 @@ export default function Hero({ onExplore }: { onExplore: (id: string) => void })
             muted
             loop
             playsInline
-            webkit-playsinline="true"
             preload="auto"
             poster={BRAND.heroPoster}
             aria-label="KYVAAN Group brand film"
