@@ -5,16 +5,13 @@ import { BRAND } from "../data/brand";
 export default function Hero({ onExplore }: { onExplore: (id: string) => void }) {
   const [armed, setArmed] = useState(false);
 
-  /* Keep the poster immediately visible, respect reduced-motion and
-     data-saver preferences, then start the film after the hero settles.
-     This allows muted inline autoplay on mobile without forcing video
-     downloads for visitors who explicitly request reduced data. */
+  /* Mount the muted inline video immediately. Delaying the video or
+     suppressing it for mobile data-saver settings can leave only the
+     poster visible, which looks like a frozen video. Keep reduced-motion
+     users on the static poster. */
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const c = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-    if (c?.saveData) return;
-    const t = window.setTimeout(() => setArmed(true), 1800);
-    return () => window.clearTimeout(t);
+    setArmed(true);
   }, []);
 
   return (
