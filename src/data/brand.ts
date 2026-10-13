@@ -72,7 +72,7 @@ export const BRAND = {
   statement:
     "KYVAAN Group creates considered real estate — places with identity, lasting value and a distinctly human scale.",
   /** Put the final hero film at public/media/hero-kyvaan.mp4. */
-  heroVideoPrimary: "/media/hero-kyvaan.mp4",
+  heroVideoPrimary: "/media/hero-kyvaan.mp4?v=20261013-2",
   heroVideoFallback:
     "https://videos.pexels.com/video-files/36381056/15428539_3840_2160_30fps.mp4",
   heroPoster: "/images/hero-poster.jpg",
