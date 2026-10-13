@@ -5,14 +5,14 @@ import { BRAND } from "../data/brand";
 export default function Hero({ onExplore }: { onExplore: (id: string) => void }) {
   const [armed, setArmed] = useState(false);
 
-  /* Load the brand film only once the page has settled, and never on
-     save-data or slow connections — the poster carries the hero. */
+  /* Keep the poster immediately visible, respect reduced-motion and
+     data-saver preferences, then start the film after the hero settles.
+     This allows muted inline autoplay on mobile without forcing video
+     downloads for visitors who explicitly request reduced data. */
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const c = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } })
-      .connection;
+    const c = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
     if (c?.saveData) return;
-    if (c?.effectiveType && !/4g/.test(c.effectiveType)) return;
     const t = window.setTimeout(() => setArmed(true), 1800);
     return () => window.clearTimeout(t);
   }, []);
@@ -29,7 +29,7 @@ export default function Hero({ onExplore }: { onExplore: (id: string) => void })
           fetchPriority="high"
         />
 
-        {/* brand film — client master first, cinematic fallback second */}
+        {/* brand film — primary local video, remote fallback */}
         {armed && (
           <video
             className="absolute inset-0 h-full w-full object-cover"
@@ -37,7 +37,7 @@ export default function Hero({ onExplore }: { onExplore: (id: string) => void })
             muted
             loop
             playsInline
-            preload="auto"
+            preload="metadata"
             poster={BRAND.heroPoster}
             aria-label="KYVAAN Group brand film"
           >
