@@ -1,24 +1,35 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { BRAND } from "../data/brand";
 
 export default function Hero({ onExplore }: { onExplore: (id: string) => void }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [armed, setArmed] = useState(false);
+  const [needsPlay, setNeedsPlay] = useState(false);
 
-  /* Mount the muted inline video immediately. Delaying the video or
-     suppressing it for mobile data-saver settings can leave only the
-     poster visible, which looks like a frozen video. Keep reduced-motion
-     users on the static poster. */
+  const tryPlay = useCallback(async () => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    video.playsInline = true;
+    try {
+      await video.play();
+      setNeedsPlay(false);
+    } catch {
+      // Safari may block autoplay; show a user-gesture play control.
+      setNeedsPlay(true);
+    }
+  }, []);
+
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Keep the film available even when reduced motion is preferred; the
+    // visible play control lets the visitor choose whether to start motion.
     setArmed(true);
   }, []);
 
   return (
     <section className="relative flex h-[100svh] min-h-[620px] items-center justify-center overflow-hidden bg-ink">
-      {/* the film, framed as an editorial plate on the ivory page */}
       <div className="grain absolute inset-x-3 bottom-3 top-[76px] overflow-hidden rounded-[22px] bg-ink-3 md:inset-x-5 md:bottom-5 md:top-[96px] md:rounded-[30px]">
-        {/* poster — always present, never blocks */}
         <img
           src={BRAND.heroPoster}
           alt="KYVAAN Group — architecture and open land at golden hour"
@@ -26,24 +37,28 @@ export default function Hero({ onExplore }: { onExplore: (id: string) => void })
           fetchPriority="high"
         />
 
-        {/* brand film — primary local video, remote fallback */}
         {armed && (
           <video
+            ref={videoRef}
             className="absolute inset-0 h-full w-full object-cover"
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            webkit-playsinline="true"
+            preload="auto"
             poster={BRAND.heroPoster}
             aria-label="KYVAAN Group brand film"
+            onLoadedMetadata={() => { void tryPlay(); }}
+            onCanPlay={() => { void tryPlay(); }}
+            onPlaying={() => setNeedsPlay(false)}
+            onError={() => setNeedsPlay(true)}
           >
             <source src={BRAND.heroVideoPrimary} type="video/mp4" />
             <source src={BRAND.heroVideoFallback} type="video/mp4" />
           </video>
         )}
 
-        {/* warm espresso grade — keeps ivory type legible, keeps the film warm */}
         <div className="absolute inset-0 bg-gradient-to-b from-espresso/45 via-espresso/30 to-espresso/65" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(36,24,16,0.28)_0%,transparent_70%)]" />
         <div
@@ -53,6 +68,16 @@ export default function Hero({ onExplore }: { onExplore: (id: string) => void })
               "radial-gradient(ellipse at center, rgba(233,210,174,0.32) 0%, rgba(233,210,174,0.08) 45%, transparent 70%)",
           }}
         />
+        {needsPlay && (
+          <button
+            type="button"
+            onClick={() => { void tryPlay(); }}
+            className="absolute bottom-5 right-5 z-20 rounded-full border border-ivory/70 bg-espresso/75 px-4 py-2 text-xs font-medium text-ivory backdrop-blur-sm"
+            aria-label="Play KYVAAN Group brand film"
+          >
+            Play film ▶
+          </button>
+        )}
       </div>
 
       <div className="relative z-10 mx-auto mt-14 max-w-5xl px-8 text-center md:mt-16">
