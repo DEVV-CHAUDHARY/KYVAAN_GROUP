@@ -56,16 +56,22 @@ export const PROJECTS: Project[] = [
       "Radhika Greens is built around a simple idea: a farm house should feel like a place, not an address. Generous plots, considered architecture and private pool living come together in a setting defined by openness and calm.",
       "Each home is oriented to its land — framed views, shaded courtyards and a direct relationship with the countryside around it.",
     ],
-    heroImage: "./images/radhika-aerial.jpg",
+    heroImage: "/images/radhika-greens-layout.jpg",
     heroAlt:
-      "Aerial view of Radhika Greens farm house community with private pools and green plots",
+      "Official Radhika Greens plotted layout map showing numbered plots, internal roads and green open spaces",
     heroVideo: null,
     gallery: [
+      {
+        src: "/images/radhika-greens-layout.jpg",
+        alt: "Official Radhika Greens layout plan with numbered plots, 9 m and 12 m wide roads, and green open spaces",
+        caption: "Radhika Greens — official plotted layout plan",
+        span: "full",
+      },
       {
         src: "./images/radhika-villa.jpg",
         alt: "Radhika Greens luxury farmhouse exterior with private pool at golden hour",
         caption: "Farmhouse architecture — private pool living",
-        span: "full",
+        span: "wide",
       },
       {
         src: "./images/radhika-detail.jpg",
@@ -81,16 +87,20 @@ export const PROJECTS: Project[] = [
       },
     ],
     features: [
+      "Numbered plots shown in the supplied layout",
+      "Internal roads marked 9.00 m wide",
+      "A 12.00 m wide road shown in the layout",
+      "Green open-space strips shown between plot sections",
       "Luxury farm plots",
       "Private pool living",
-      "Open landscape setting",
-      "Shaded courtyards",
     ],
     amenities: [],
     details: [
       { label: "Location", value: "Vrindavan" },
       { label: "Project type", value: "Premium farm houses" },
       { label: "Development", value: "Luxury farm plots · Private pool living" },
+      { label: "Layout roads shown", value: "9.00 m and 12.00 m wide" },
+      { label: "Layout", value: "Numbered plots with green open-space strips" },
       { label: "Status", value: "Live project" },
     ],
     enquiry: "Enquire about Radhika Greens",
