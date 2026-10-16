@@ -115,14 +115,14 @@ export const PROJECTS: Project[] = [
       "At Jait, KYVAAN plans a community where cottages and farms belong to one another — a layout balancing private retreat with shared green, and individual character with collective order.",
       "The layout is drawn with patience: generous setbacks, tree-lined paths and open lawns at its centre.",
     ],
-    heroImage: "./images/shriji-layout.jpg",
-    heroAlt: "Official Shri Ji Cottage and Farms site layout plan from the supplied FINAL FARM HOUSE LAYOUT PDF",
+    heroImage: "./images/shriji-cottage.jpg",
+    heroAlt: "Shri Ji Cottage farmhouse in green farmland at Jait, Vrindavan",
     heroVideo: null,
     gallery: [
       {
         src: "./images/shriji-layout.jpg",
-        alt: "Official Shri Ji Cottage and Farms site layout plan from the supplied FINAL FARM HOUSE LAYOUT PDF",
-        caption: "Official site layout — Shri Ji Cottage and Farms",
+        alt: "Shri Ji Cottage and Farms planned community site layout drawing",
+        caption: "Site layout — a planned farm community",
         span: "full",
       },
       {
