@@ -169,15 +169,15 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
           whileInView={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
           viewport={seen}
           transition={{ duration: 1.1, ease: EASE }}
-          className={`img-frame relative ${isSharnamPlan ? "min-h-[55vh] bg-[#f8f4ec]" : "aspect-[16/9]"}`}
+          className={`img-frame relative ${isSharnamPlan || isRadhikaGreens ? "min-h-[55vh] bg-[#f8f4ec]" : "aspect-[16/9]"}`}
         >
-          <img src={g0.src} alt={g0.alt} className={`h-full w-full ${isSharnamPlan ? "object-contain" : "object-cover"}`} loading="lazy" decoding="async" data-cursor="view" />
+          <img src={g0.src} alt={g0.alt} className={`h-full w-full ${isSharnamPlan || isRadhikaGreens ? "object-contain" : "object-cover"}`} loading="lazy" decoding="async" data-cursor="view" />
           <figcaption className="caption-photo absolute bottom-5 left-6 text-[0.56rem] font-semibold uppercase tracking-[0.28em]">
             {g0.caption}
           </figcaption>
         </motion.figure>
 
-        {!isSharnamPlan && <div className="mt-4 grid gap-4 md:grid-cols-12">
+        {!isSharnamPlan && !isRadhikaGreens && <div className="mt-4 grid gap-4 md:grid-cols-12">
           <motion.figure
             initial={{ opacity: 0, y: 36 }}
             whileInView={{ opacity: 1, y: 0 }}
