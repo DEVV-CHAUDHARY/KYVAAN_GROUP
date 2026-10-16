@@ -175,13 +175,13 @@ export const PROJECTS: Project[] = [
       "Plot options are being presented across a requested range of 100 to 600 gaj (square yards). The supplied plan specifically labels sample 100 sq. yd. plots as 20 ft × 45 ft. Final plot dimensions, availability, approvals and transaction terms should be confirmed with the project team before purchase.",
     ],
     heroImage: "./images/shriji-layout.jpg",
-    heroAlt: "Residential plot layout plan for Shri Ji Sharnam at Jait, Vrindavan",
+    heroAlt: "Illustrative residential community layout image; refer to the supplied project plan for official plot details",
     heroVideo: null,
     gallery: [
       {
         src: "./images/shriji-layout.jpg",
-        alt: "Residential colony layout drawing with plot blocks, internal roads, park and temple area",
-        caption: "Proposed site layout",
+        alt: "Illustrative residential community layout image; not the supplied Shri Ji Sharnam plan",
+        caption: "Illustrative layout inspiration — refer to the official project plan",
         span: "full",
       },
       {
