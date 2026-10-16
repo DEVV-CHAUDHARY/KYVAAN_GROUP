@@ -111,7 +111,7 @@ export default function ContactSection({ preselect }: { preselect?: string }) {
                 <circle cx="22" cy="22" r="20" />
                 <path d="M13 22.5l6 6 12-13" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <h3 className="mt-6 font-display text-2xl font-light text-bone">Thank you.</h3>
+              <h3 className="mt-6 font-display text-2xl font-light text-bone">One more step</h3>
               <p className="mt-3 max-w-sm text-sm font-light text-bone/60">
                 WhatsApp should open with your enquiry prepared. Please review the details and press Send in WhatsApp to deliver it to the KYVAAN team.
               </p>
