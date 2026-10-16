@@ -36,6 +36,7 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
   const i = PROJECTS.findIndex((p) => p.slug === project.slug);
   const next = PROJECTS[(i + 1) % PROJECTS.length];
   const [g0, g1, g2] = project.gallery;
+  const isSharnamPlan = project.slug === "shri-ji-sharnam";
 
   /** Return to the ecosystem — lands on the tree, with this branch highlighted. */
   const backToTree = () => transitionTo("/", undefined, { scrollTo: "tree", highlight: project.slug });
@@ -54,19 +55,19 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
       </button>
 
       {/* ---------- hero ---------- */}
-      <header ref={heroRef} className="relative h-[92svh] min-h-[560px] overflow-hidden">
+      <header ref={heroRef} className={`relative ${isSharnamPlan ? "min-h-[680px] h-[92svh] bg-[#f8f4ec]" : "h-[92svh] min-h-[560px]"} overflow-hidden`}>
         <motion.img
           style={{ y: heroY, opacity: heroFade }}
           src={project.heroImage}
           alt={project.heroAlt}
-          className="absolute inset-0 h-[115%] w-full object-cover"
+          className={`absolute inset-0 h-full w-full ${isSharnamPlan ? "object-contain object-center" : "h-[115%] object-cover"}`}
           decoding="async"
         />
-        <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${project.tint}, transparent 55%)` }} />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-transparent md:via-ink/30" />
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ink/55 to-transparent" />
+        {!isSharnamPlan && <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${project.tint}, transparent 55%)` }} /> }
+        {!isSharnamPlan && <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-transparent md:via-ink/30" /> }
+        {!isSharnamPlan && <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-ink/55 to-transparent" /> }
 
-        <div className="absolute inset-x-0 bottom-0 mx-auto max-w-[1500px] px-6 pb-12 md:px-10 md:pb-16">
+        <div className={`absolute inset-x-0 mx-auto max-w-[1500px] px-6 md:px-10 ${isSharnamPlan ? "bottom-0 pb-8 md:pb-10" : "bottom-0 pb-12 md:pb-16"}`}>
           <motion.div initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: EASE }}>
             <div className="flex flex-wrap items-center gap-3">
               <span className="font-display text-sm text-bronze-2">{project.number}</span>
@@ -159,16 +160,15 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
           whileInView={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
           viewport={seen}
           transition={{ duration: 1.1, ease: EASE }}
-          className="img-frame relative aspect-[16/9]"
+          className={`img-frame relative ${isSharnamPlan ? "min-h-[55vh] bg-[#f8f4ec]" : "aspect-[16/9]"}`}
         >
-          <img src={g0.src} alt={g0.alt} className="h-full w-full object-cover" loading="lazy" decoding="async" data-cursor="view" />
+          <img src={g0.src} alt={g0.alt} className={`h-full w-full ${isSharnamPlan ? "object-contain" : "object-cover"}`} loading="lazy" decoding="async" data-cursor="view" />
           <figcaption className="caption-photo absolute bottom-5 left-6 text-[0.56rem] font-semibold uppercase tracking-[0.28em]">
             {g0.caption}
           </figcaption>
         </motion.figure>
 
-        {/* offset editorial pair */}
-        <div className="mt-4 grid gap-4 md:grid-cols-12">
+        {!isSharnamPlan && <div className="mt-4 grid gap-4 md:grid-cols-12">
           <motion.figure
             initial={{ opacity: 0, y: 36 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -194,7 +194,7 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
               {g2.caption}
             </figcaption>
           </motion.figure>
-        </div>
+        </div>}
       </section>
 
       {/* ---------- film ---------- */}
