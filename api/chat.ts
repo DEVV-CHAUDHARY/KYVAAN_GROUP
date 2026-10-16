@@ -48,6 +48,7 @@ export default async function handler(req: any, res: any) {
   }
 
   const apiKey = process.env.GEMINI_API_KEY;
+  let lastUserMessage = "";
 
   try {
     const messages = Array.isArray(req.body?.messages) ? req.body.messages : [];
@@ -64,8 +65,8 @@ export default async function handler(req: any, res: any) {
         parts: [{ text: m.content.slice(0, 2000) }],
       }));
 
-    const lastUserMessage =
-      messages.filter((m: any) => m?.role === "user" && typeof m?.content === "string").at(-1)?.content || "";
+    lastUserMessage =
+      messages.filter((m: any) => m?.role === "user" && typeof m?.content === "string").at(-1)?.content?.slice(0, 2000) || "";
 
     if (!lastUserMessage.trim()) {
       return res.status(400).json({ error: "Please enter a message." });
@@ -79,11 +80,12 @@ export default async function handler(req: any, res: any) {
       });
     }
 
-    const model = process.env.GEMINI_MODEL || "gemini-3.8-flash";
+    const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
     const endpoint =
       `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`;
 
     const response = await fetch(endpoint, {
+      signal: AbortSignal.timeout(20000),
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

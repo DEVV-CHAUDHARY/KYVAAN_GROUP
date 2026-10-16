@@ -6,6 +6,7 @@ import SocialLinks from "./SocialLinks";
 
 export default function ContactSection({ preselect }: { preselect?: string }) {
   const [sent, setSent] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState("");
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -110,28 +111,38 @@ export default function ContactSection({ preselect }: { preselect?: string }) {
                 <circle cx="22" cy="22" r="20" />
                 <path d="M13 22.5l6 6 12-13" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <h3 className="mt-6 font-display text-2xl font-light text-bone">Thank you.</h3>
+              <h3 className="mt-6 font-display text-2xl font-light text-bone">One more step</h3>
               <p className="mt-3 max-w-sm text-sm font-light text-bone/60">
-                Your enquiry has been received. The KYVAAN team will be in touch.
+                WhatsApp should open with your enquiry prepared. Please review the details and press Send in WhatsApp to deliver it to the KYVAAN team.
               </p>
-              <button onClick={() => setSent(false)} className="btn-ghost mt-7" data-cursor="link">
-                Send another
+              <a href={whatsappUrl} target="_blank" rel="noreferrer" className="btn-primary mt-7" data-cursor="link">
+                Open WhatsApp to send enquiry
+              </a>
+              <button onClick={() => setSent(false)} className="btn-ghost mt-3" data-cursor="link">
+                Edit enquiry
               </button>
             </div>
           ) : (
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                const subject = `Website Enquiry — ${form.project || "General enquiry"}`;
+                const projectName =
+                  PROJECTS.find((project) => project.slug === form.project)?.name ||
+                  "General enquiry";
                 const body = [
+                  "Hello KYVAAN Group, I would like to make an enquiry.",
+                  "",
                   `Name: ${form.name}`,
                   `Phone: ${form.phone}`,
                   `Email: ${form.email}`,
-                  `Project: ${form.project || "General enquiry"}`,
+                  `Project: ${projectName}`,
                   "",
+                  "Message:",
                   form.message,
-                ].join("\\n");
-                window.location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                ].join("\n");
+                const url = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(body)}`;
+                setWhatsappUrl(url);
+                window.open(url, "_blank", "noopener,noreferrer");
                 setSent(true);
               }}
               className="card grid gap-4 p-6 md:p-8"
