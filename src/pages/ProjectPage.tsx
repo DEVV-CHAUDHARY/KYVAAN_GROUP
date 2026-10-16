@@ -38,7 +38,8 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
   const [g0, g1, g2] = project.gallery;
   const isSharnamPlan = project.slug === "shri-ji-sharnam";
   const isRadhikaGreens = project.slug === "radhika-greens";
-  const isPremiumHero = isSharnamPlan || isRadhikaGreens;
+  const isShriJiCottage = project.slug === "shri-ji-cottage";
+  const isPremiumHero = isSharnamPlan || isRadhikaGreens || isShriJiCottage;
 
   /** Return to the ecosystem — lands on the tree, with this branch highlighted. */
   const backToTree = () => transitionTo("/", undefined, { scrollTo: "tree", highlight: project.slug });
@@ -62,7 +63,7 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
           <div className="pointer-events-none absolute inset-0 opacity-50" style={{ backgroundImage: "radial-gradient(circle at 15% 85%, rgba(208,165,76,.20), transparent 28%), radial-gradient(circle at 90% 12%, rgba(208,165,76,.15), transparent 25%)" }} />
           <div className="relative mx-auto grid min-h-[900px] max-w-[1600px] items-center gap-6 px-5 pb-14 pt-28 md:min-h-[min(900px,100svh)] md:grid-cols-[0.88fr_1.12fr] md:gap-2 md:px-10 md:pb-10 md:pt-28 lg:px-16">
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: EASE }} className="relative z-10 py-4 md:py-8">
-              <p className="text-[0.62rem] font-semibold uppercase tracking-[0.32em] text-[#946c2c]">{isRadhikaGreens ? "Premium farm house community" : "Planned residential colony"}</p>
+              <p className="text-[0.62rem] font-semibold uppercase tracking-[0.32em] text-[#946c2c]">{isRadhikaGreens ? "Premium farm house community" : isShriJiCottage ? "Cottage & farm community" : "Planned residential colony"}</p>
               <h1 className="mt-5 max-w-[650px] font-display text-[4.1rem] font-normal leading-[0.83] tracking-[-0.045em] text-[#17351f] sm:text-[5.3rem] md:text-[5rem] lg:text-[7rem]">{project.name}</h1>
               <div className="mt-7 h-px w-64 bg-gradient-to-r from-[#c69b45] to-transparent" />
               <p className="mt-5 text-[0.68rem] font-semibold uppercase tracking-[0.25em] text-[#604c32]">{project.location}</p>
@@ -73,6 +74,11 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
                   ["❧", "Open", "Green Landscape"],
                   ["◉", "Private", "Pool Living"],
                   ["⌂", "Peaceful", "Countryside"]
+                ] : isShriJiCottage ? [
+                  ["❧", "Green", "Open Area"],
+                  ["⌂", "Cottage", "& Farms"],
+                  ["↔", "Internal", "Road Network"],
+                  ["↗", "60 ft", "Wide Road"]
                 ] : [
                   ["⌂", "Near", "ISKCON Temple"],
                   ["❧", "Green", "Surroundings"],
@@ -95,12 +101,12 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
               <div className="absolute inset-5 rounded-[45%] bg-[#ead9b4]/35 blur-3xl" />
               <div className="relative w-full overflow-hidden rounded-[24px] border border-[#e3d2ae] bg-[#fffdf8] p-3 shadow-[0_25px_80px_-35px_rgba(63,48,24,.38)] sm:p-5 md:rotate-[1deg]">
                 <div className="mb-3 flex items-center justify-between gap-3 border-b border-[#e8dec9] px-2 pb-3">
-                  <div><p className="font-display text-xl text-[#17351f] sm:text-2xl">{project.name}</p><p className="mt-1 text-[0.52rem] uppercase tracking-[0.22em] text-[#8b744b]">{isRadhikaGreens ? "Farmhouse community aerial" : "Official colony layout plan"}</p></div>
+                  <div><p className="font-display text-xl text-[#17351f] sm:text-2xl">{project.name}</p><p className="mt-1 text-[0.52rem] uppercase tracking-[0.22em] text-[#8b744b]">{isRadhikaGreens ? "Farmhouse community layout" : isShriJiCottage ? "Official cottage & farm layout" : "Official colony layout plan"}</p></div>
                   <span className="rounded-full border border-[#d9c69e] px-3 py-1 text-[0.5rem] uppercase tracking-[0.18em] text-[#80632d]">{isRadhikaGreens ? "Community view" : "Site plan"}</span>
                 </div>
                 <img src={project.heroImage} alt={project.heroAlt} className="block max-h-[68vh] min-h-[460px] w-full object-contain object-center" decoding="async" />
                 <div className="mt-3 grid grid-cols-2 gap-2 border-t border-[#e8dec9] px-2 pt-3 sm:grid-cols-4">
-                  {(isRadhikaGreens ? [["Luxury", "Farm plots"],["Private", "Pool living"],["Open", "Green landscape"],["Live", "Project status"]] : [["31,995", "Total land · sq. yds."],["21,245.57", "Plot area · sq. yds."],["9,483.44", "Road area · sq. yds."],["1,265.99", "Park + temple · sq. yds."]]).map(([value,label]) => <div key={label} className="py-1"><p className="font-display text-lg text-[#17351f] sm:text-xl">{value}</p><p className="mt-1 text-[0.5rem] uppercase leading-snug tracking-[0.1em] text-[#8a785c]">{label}</p></div>)}
+                  {(isRadhikaGreens ? [["Luxury", "Farm plots"],["Private", "Pool living"],["Open", "Green landscape"],["Live", "Project status"]] : isShriJiCottage ? [["Jait", "Vrindavan"],["Green", "Open area shown"],["Internal", "Road network"],["60 ft", "Wide road shown"]] : [["31,995", "Total land · sq. yds."],["21,245.57", "Plot area · sq. yds."],["9,483.44", "Road area · sq. yds."],["1,265.99", "Park + temple · sq. yds."]]).map(([value,label]) => <div key={label} className="py-1"><p className="font-display text-lg text-[#17351f] sm:text-xl">{value}</p><p className="mt-1 text-[0.5rem] uppercase leading-snug tracking-[0.1em] text-[#8a785c]">{label}</p></div>)}
                 </div>
               </div>
             </motion.div>
@@ -169,15 +175,15 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
           whileInView={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
           viewport={seen}
           transition={{ duration: 1.1, ease: EASE }}
-          className={`img-frame relative ${isSharnamPlan || isRadhikaGreens ? "min-h-[55vh] bg-[#f8f4ec]" : "aspect-[16/9]"}`}
+          className={`img-frame relative ${isSharnamPlan || isRadhikaGreens || isShriJiCottage ? "min-h-[55vh] bg-[#f8f4ec]" : "aspect-[16/9]"}`}
         >
-          <img src={g0.src} alt={g0.alt} className={`h-full w-full ${isSharnamPlan || isRadhikaGreens ? "object-contain" : "object-cover"}`} loading="lazy" decoding="async" data-cursor="view" />
+          <img src={g0.src} alt={g0.alt} className={`h-full w-full ${isSharnamPlan || isRadhikaGreens || isShriJiCottage ? "object-contain" : "object-cover"}`} loading="lazy" decoding="async" data-cursor="view" />
           <figcaption className="caption-photo absolute bottom-5 left-6 text-[0.56rem] font-semibold uppercase tracking-[0.28em]">
             {g0.caption}
           </figcaption>
         </motion.figure>
 
-        {!isSharnamPlan && !isRadhikaGreens && <div className="mt-4 grid gap-4 md:grid-cols-12">
+        {!isSharnamPlan && !isRadhikaGreens && !isShriJiCottage && <div className="mt-4 grid gap-4 md:grid-cols-12">
           <motion.figure
             initial={{ opacity: 0, y: 36 }}
             whileInView={{ opacity: 1, y: 0 }}
