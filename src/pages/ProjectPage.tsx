@@ -37,6 +37,8 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
   const next = PROJECTS[(i + 1) % PROJECTS.length];
   const [g0, g1, g2] = project.gallery;
   const isSharnamPlan = project.slug === "shri-ji-sharnam";
+  const isRadhikaGreens = project.slug === "radhika-greens";
+  const isPremiumHero = isSharnamPlan || isRadhikaGreens;
 
   /** Return to the ecosystem — lands on the tree, with this branch highlighted. */
   const backToTree = () => transitionTo("/", undefined, { scrollTo: "tree", highlight: project.slug });
@@ -55,23 +57,28 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
       </button>
 
       {/* ---------- hero ---------- */}
-      {isSharnamPlan ? (
+      {isPremiumHero ? (
         <header ref={heroRef} className="relative min-h-[900px] overflow-hidden bg-[#fbf4e5] text-[#17351f] md:min-h-[min(900px,100svh)]">
           <div className="pointer-events-none absolute inset-0 opacity-50" style={{ backgroundImage: "radial-gradient(circle at 15% 85%, rgba(208,165,76,.20), transparent 28%), radial-gradient(circle at 90% 12%, rgba(208,165,76,.15), transparent 25%)" }} />
           <div className="relative mx-auto grid min-h-[900px] max-w-[1600px] items-center gap-6 px-5 pb-14 pt-28 md:min-h-[min(900px,100svh)] md:grid-cols-[0.88fr_1.12fr] md:gap-2 md:px-10 md:pb-10 md:pt-28 lg:px-16">
             <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: EASE }} className="relative z-10 py-4 md:py-8">
-              <p className="text-[0.62rem] font-semibold uppercase tracking-[0.32em] text-[#946c2c]">Planned residential colony</p>
+              <p className="text-[0.62rem] font-semibold uppercase tracking-[0.32em] text-[#946c2c]">{isRadhikaGreens ? "Premium farm house community" : "Planned residential colony"}</p>
               <h1 className="mt-5 max-w-[650px] font-display text-[4.1rem] font-normal leading-[0.83] tracking-[-0.045em] text-[#17351f] sm:text-[5.3rem] md:text-[5rem] lg:text-[7rem]">{project.name}</h1>
               <div className="mt-7 h-px w-64 bg-gradient-to-r from-[#c69b45] to-transparent" />
               <p className="mt-5 text-[0.68rem] font-semibold uppercase tracking-[0.25em] text-[#604c32]">{project.location}</p>
               <p className="mt-5 max-w-lg text-[1rem] leading-relaxed text-[#655a49] md:text-[1.05rem]">{project.description}</p>
               <div className="mt-8 grid max-w-[550px] grid-cols-2 gap-x-4 gap-y-5 sm:grid-cols-4 md:grid-cols-2 lg:grid-cols-4">
-                {[
+                {(isRadhikaGreens ? [
+                  ["⌂", "Luxury", "Farm Plots"],
+                  ["❧", "Open", "Green Landscape"],
+                  ["◉", "Private", "Pool Living"],
+                  ["⌂", "Peaceful", "Countryside"]
+                ] : [
                   ["⌂", "Near", "ISKCON Temple"],
                   ["❧", "Green", "Surroundings"],
                   ["╱╲", "Wide", "Internal Roads"],
                   ["⌂", "Planned", "Residential Colony"]
-                ].map(([icon, title, subtitle]) => (
+                ]).map(([icon, title, subtitle]) => (
                   <div key={title} className="text-center sm:text-left">
                     <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-[#c9a45c]/70 text-xl text-[#9b762f] sm:mx-0">{icon}</span>
                     <p className="mt-2 text-sm font-medium text-[#4b3c29]">{title}</p>
@@ -88,12 +95,12 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
               <div className="absolute inset-5 rounded-[45%] bg-[#ead9b4]/35 blur-3xl" />
               <div className="relative w-full overflow-hidden rounded-[24px] border border-[#e3d2ae] bg-[#fffdf8] p-3 shadow-[0_25px_80px_-35px_rgba(63,48,24,.38)] sm:p-5 md:rotate-[1deg]">
                 <div className="mb-3 flex items-center justify-between gap-3 border-b border-[#e8dec9] px-2 pb-3">
-                  <div><p className="font-display text-xl text-[#17351f] sm:text-2xl">{project.name}</p><p className="mt-1 text-[0.52rem] uppercase tracking-[0.22em] text-[#8b744b]">Official colony layout plan</p></div>
-                  <span className="rounded-full border border-[#d9c69e] px-3 py-1 text-[0.5rem] uppercase tracking-[0.18em] text-[#80632d]">Site plan</span>
+                  <div><p className="font-display text-xl text-[#17351f] sm:text-2xl">{project.name}</p><p className="mt-1 text-[0.52rem] uppercase tracking-[0.22em] text-[#8b744b]">{isRadhikaGreens ? "Farmhouse community aerial" : "Official colony layout plan"}</p></div>
+                  <span className="rounded-full border border-[#d9c69e] px-3 py-1 text-[0.5rem] uppercase tracking-[0.18em] text-[#80632d]">{isRadhikaGreens ? "Community view" : "Site plan"}</span>
                 </div>
                 <img src={project.heroImage} alt={project.heroAlt} className="block max-h-[68vh] min-h-[460px] w-full object-contain object-center" decoding="async" />
                 <div className="mt-3 grid grid-cols-2 gap-2 border-t border-[#e8dec9] px-2 pt-3 sm:grid-cols-4">
-                  {[["31,995", "Total land · sq. yds."],["21,245.57", "Plot area · sq. yds."],["9,483.44", "Road area · sq. yds."],["1,265.99", "Park + temple · sq. yds."]].map(([value,label]) => <div key={label} className="py-1"><p className="font-display text-lg text-[#17351f] sm:text-xl">{value}</p><p className="mt-1 text-[0.5rem] uppercase leading-snug tracking-[0.1em] text-[#8a785c]">{label}</p></div>)}
+                  {(isRadhikaGreens ? [["Luxury", "Farm plots"],["Private", "Pool living"],["Open", "Green landscape"],["Live", "Project status"]] : [["31,995", "Total land · sq. yds."],["21,245.57", "Plot area · sq. yds."],["9,483.44", "Road area · sq. yds."],["1,265.99", "Park + temple · sq. yds."]]).map(([value,label]) => <div key={label} className="py-1"><p className="font-display text-lg text-[#17351f] sm:text-xl">{value}</p><p className="mt-1 text-[0.5rem] uppercase leading-snug tracking-[0.1em] text-[#8a785c]">{label}</p></div>)}
                 </div>
               </div>
             </motion.div>
