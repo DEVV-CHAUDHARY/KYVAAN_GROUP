@@ -170,46 +170,55 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
 
       {/* ---------- editorial gallery ---------- */}
       <section id="gallery" className="mx-auto max-w-[1500px] px-6 md:px-10" aria-label="Project gallery">
-        <motion.figure
-          initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
-          whileInView={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
-          viewport={seen}
-          transition={{ duration: 1.1, ease: EASE }}
-          className={`img-frame relative ${isSharnamPlan || isRadhikaGreens || isShriJiCottage ? "min-h-[55vh] bg-[#f8f4ec]" : "aspect-[16/9]"}`}
-        >
-          <img src={g0.src} alt={g0.alt} className={`h-full w-full ${isSharnamPlan || isRadhikaGreens || isShriJiCottage ? "object-contain" : "object-cover"}`} loading="lazy" decoding="async" data-cursor="view" />
-          <figcaption className="caption-photo absolute bottom-5 left-6 text-[0.56rem] font-semibold uppercase tracking-[0.28em]">
-            {g0.caption}
-          </figcaption>
-        </motion.figure>
-
-        {!isSharnamPlan && !isRadhikaGreens && !isShriJiCottage && <div className="mt-4 grid gap-4 md:grid-cols-12">
-          <motion.figure
-            initial={{ opacity: 0, y: 36 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={seen}
-            transition={{ duration: 0.95, ease: EASE }}
-            className="img-frame relative aspect-[3/2] md:col-span-7"
-          >
-            <img src={g1.src} alt={g1.alt} className="h-full w-full object-cover" loading="lazy" decoding="async" data-cursor="view" />
-            <figcaption className="caption-photo absolute bottom-5 left-6 text-[0.56rem] font-semibold uppercase tracking-[0.28em]">
-              {g1.caption}
-            </figcaption>
-          </motion.figure>
-
-          <motion.figure
-            initial={{ opacity: 0, y: 36 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={seen}
-            transition={{ duration: 0.95, delay: 0.12, ease: EASE }}
-            className="img-frame relative aspect-[3/4] md:col-span-5 md:-mt-12"
-          >
-            <img src={g2.src} alt={g2.alt} className="h-full w-full object-cover" loading="lazy" decoding="async" data-cursor="view" />
-            <figcaption className="caption-photo absolute bottom-5 left-6 text-[0.56rem] font-semibold uppercase tracking-[0.28em]">
-              {g2.caption}
-            </figcaption>
-          </motion.figure>
-        </div>}
+        {isShriJiCottage ? (
+          <>
+            <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="eyebrow text-bronze">On-site photography</p>
+                <h2 className="mt-3 font-display text-3xl text-bone md:text-5xl">A closer look at Shri Ji Cottage</h2>
+              </div>
+              <p className="max-w-sm text-sm leading-relaxed text-bone/55">The entrance, tree-lined avenues and open surroundings at Jait, Vrindavan.</p>
+            </div>
+            <div className="grid auto-rows-[220px] grid-cols-1 gap-4 sm:grid-cols-2 md:auto-rows-[280px] md:grid-cols-3">
+              {project.gallery.map((item, index) => (
+                <motion.figure
+                  key={item.src}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={seen}
+                  transition={{ duration: 0.75, delay: (index % 3) * 0.08, ease: EASE }}
+                  className={`img-frame group relative overflow-hidden bg-[#f8f4ec] ${index === 0 || index === 3 ? "sm:col-span-2 md:row-span-2" : ""}`}
+                >
+                  <img src={item.src} alt={item.alt} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]" loading="lazy" decoding="async" />
+                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-5 pb-5 pt-14 text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-white">
+                    {item.caption}
+                  </figcaption>
+                </motion.figure>
+              ))}
+            </div>
+          </>
+        ) : (
+          <>
+            <motion.figure
+              initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
+              whileInView={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
+              viewport={seen}
+              transition={{ duration: 1.1, ease: EASE }}
+              className={`img-frame relative ${isSharnamPlan || isRadhikaGreens ? "min-h-[55vh] bg-[#f8f4ec]" : "aspect-[16/9]"}`}
+            >
+              <img src={g0.src} alt={g0.alt} className={`h-full w-full ${isSharnamPlan || isRadhikaGreens ? "object-contain" : "object-cover"}`} loading="lazy" decoding="async" data-cursor="view" />
+              <figcaption className="caption-photo absolute bottom-5 left-6 text-[0.56rem] font-semibold uppercase tracking-[0.28em]">{g0.caption}</figcaption>
+            </motion.figure>
+            {!isSharnamPlan && !isRadhikaGreens && <div className="mt-4 grid gap-4 md:grid-cols-12">
+              {[g1, g2].map((item, index) => (
+                <figure key={item.src} className={`img-frame relative aspect-[3/2] ${index === 0 ? "md:col-span-7" : "md:col-span-5 md:-mt-12 md:aspect-[3/4]"}`}>
+                  <img src={item.src} alt={item.alt} className="h-full w-full object-cover" loading="lazy" decoding="async" data-cursor="view" />
+                  <figcaption className="caption-photo absolute bottom-5 left-6 text-[0.56rem] font-semibold uppercase tracking-[0.28em]">{item.caption}</figcaption>
+                </figure>
+              ))}
+            </div>}
+          </>
+        )}
       </section>
 
       {/* ---------- film ---------- */}
