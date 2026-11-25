@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { PROJECTS, getProject } from "../data/projects";
 import Logo from "../components/Logo";
@@ -15,6 +15,8 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
   const navigate = useNavigate();
   const project = getProject(slug);
   const heroRef = useRef<HTMLElement>(null);
+  const [mapOpen, setMapOpen] = useState(false);
+  const [mapZoom, setMapZoom] = useState(1);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   const heroFade = useTransform(scrollYProgress, [0, 1], [1, 0.45]);
@@ -104,7 +106,7 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
                   <div><p className="font-display text-xl text-[#17351f] sm:text-2xl">{project.name}</p><p className="mt-1 text-[0.52rem] uppercase tracking-[0.22em] text-[#8b744b]">{isRadhikaGreens ? "Farmhouse community layout" : isShriJiCottage ? "Official cottage & farm layout" : "Official colony layout plan"}</p></div>
                   <span className="rounded-full border border-[#d9c69e] px-3 py-1 text-[0.5rem] uppercase tracking-[0.18em] text-[#80632d]">{isRadhikaGreens ? "Community view" : "Site plan"}</span>
                 </div>
-                <img src={project.heroImage} alt={project.heroAlt} className="block max-h-[68vh] min-h-[460px] w-full object-contain object-center" decoding="async" />
+                <button type="button" onClick={() => { if (isSharnamPlan) { setMapZoom(1); setMapOpen(true); } }} className={`block w-full ${isSharnamPlan ? "cursor-zoom-in" : "cursor-default"}`} aria-label={isSharnamPlan ? "Open Shri Ji Sharnam layout map to zoom" : undefined}><img src={project.heroImage} alt={project.heroAlt} className="block max-h-[68vh] min-h-[460px] w-full object-contain object-center" decoding="async" /></button>
                 <div className="mt-3 grid grid-cols-2 gap-2 border-t border-[#e8dec9] px-2 pt-3 sm:grid-cols-4">
                   {(isRadhikaGreens ? [["Luxury", "Farm plots"],["Private", "Pool living"],["Open", "Green landscape"],["Live", "Project status"]] : isShriJiCottage ? [["Jait", "Vrindavan"],["Green", "Open area shown"],["Internal", "Road network"],["60 ft", "Wide road shown"]] : [["31,995", "Total land · sq. yds."],["21,245.57", "Plot area · sq. yds."],["9,483.44", "Road area · sq. yds."],["1,265.99", "Park + temple · sq. yds."]]).map(([value,label]) => <div key={label} className="py-1"><p className="font-display text-lg text-[#17351f] sm:text-xl">{value}</p><p className="mt-1 text-[0.5rem] uppercase leading-snug tracking-[0.1em] text-[#8a785c]">{label}</p></div>)}
                 </div>
@@ -369,7 +371,27 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
         </div>
       </section>
 
-      <Footer />
+
+      {isSharnamPlan && mapOpen && (
+        <div className="fixed inset-0 z-[100] flex flex-col bg-[#090b08]/95 p-3 backdrop-blur-md sm:p-6" role="dialog" aria-modal="true" aria-label="Shri Ji Sharnam layout map viewer" onClick={() => setMapOpen(false)}>
+          <div className="flex shrink-0 items-center justify-between gap-3 pb-3 text-[#fff8e8]" onClick={(event) => event.stopPropagation()}>
+            <div><p className="font-display text-xl sm:text-2xl">Shri Ji Sharnam</p><p className="text-[0.58rem] uppercase tracking-[0.2em] text-white/55">Layout map · {Math.round(mapZoom * 100)}%</p></div>
+            <div className="flex items-center gap-2">
+              <button type="button" aria-label="Zoom out" onClick={() => setMapZoom((z) => Math.max(1, +(z - 0.5).toFixed(1)))} className="h-10 w-10 rounded-full border border-white/25 text-xl hover:bg-white/10">−</button>
+              <button type="button" aria-label="Zoom in" onClick={() => setMapZoom((z) => Math.min(5, +(z + 0.5).toFixed(1)))} className="h-10 w-10 rounded-full border border-white/25 text-xl hover:bg-white/10">+</button>
+              <button type="button" onClick={() => setMapZoom(1)} className="rounded-full border border-white/25 px-3 py-2 text-[0.58rem] uppercase tracking-widest hover:bg-white/10">Reset</button>
+              <button type="button" aria-label="Close map" onClick={() => setMapOpen(false)} className="h-10 w-10 rounded-full border border-white/25 text-xl hover:bg-white/10">×</button>
+            </div>
+          </div>
+          <div className="min-h-0 flex-1 overflow-auto rounded-lg bg-[#f8f4ec]" onClick={(event) => event.stopPropagation()}>
+            <div className="flex min-h-full min-w-full items-center justify-center">
+              <img src={project.heroImage} alt={project.heroAlt} draggable={false} onWheel={(event) => { event.preventDefault(); setMapZoom((z) => Math.min(5, Math.max(1, +(z + (event.deltaY < 0 ? 0.25 : -0.25)).toFixed(2)))); }} style={{ width: `${mapZoom * 100}%`, maxWidth: "none", height: "auto" }} className="block select-none object-contain" />
+            </div>
+          </div>
+          <p className="shrink-0 pt-3 text-center text-[0.58rem] uppercase tracking-[0.18em] text-white/50">Use + / − or scroll to zoom · Scroll to pan when enlarged · Tap outside to close</p>
+        </div>
+      )}
+\n      <Footer />
     </main>
   );
 }
