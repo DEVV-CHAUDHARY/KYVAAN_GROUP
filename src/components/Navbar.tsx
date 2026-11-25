@@ -6,7 +6,6 @@ import SocialLinks from "./SocialLinks";
 import { CONTACT } from "../data/brand";
 
 const LINKS = [
-  { label: "Ecosystem", id: "tree" },
   { label: "Projects", id: "projects" },
   { label: "About", id: "about" },
   { label: "Location", id: "location" },
