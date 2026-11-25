@@ -6,7 +6,6 @@ import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import MapSection from "../components/MapSection";
 import ProjectShowcase from "../components/ProjectShowcase";
-import TreeExperience from "../components/TreeExperience";
 import { getProjectIndex } from "../data/projects";
 import {
   AboutSection,
@@ -23,13 +22,12 @@ export default function Home({ onOpenProject }: { onOpenProject: (slug: string) 
     scrollTo?: string;
   } | null;
 
-  /** Bridge: the tree and map can drive the sticky showcase. */
+  // Keep project navigation in sync when returning from a project detail page.
   const jumpRef = useRef<((i: number) => void) | null>(null);
   const handleReady = useCallback((fn: (i: number) => void) => {
     jumpRef.current = fn;
   }, []);
 
-  // when returning from a project, align the showcase to that project
   useEffect(() => {
     if (!state?.highlight) return;
     const i = getProjectIndex(state.highlight);
@@ -42,7 +40,7 @@ export default function Home({ onOpenProject }: { onOpenProject: (slug: string) 
       .querySelector('meta[name="description"]')
       ?.setAttribute(
         "content",
-        "KYVAAN Group creates considered real estate — places with identity, lasting value and a distinctly human scale. Explore the KYVAAN ecosystem, projects and locations."
+        "KYVAAN Group creates considered real estate — places with identity, lasting value and a distinctly human scale. Explore KYVAAN projects and locations."
       );
   }, []);
 
@@ -54,7 +52,6 @@ export default function Home({ onOpenProject }: { onOpenProject: (slug: string) 
       <Hero onExplore={scrollTo} />
       <CategoryMarquee />
       <IntroSection />
-      <TreeExperience onOpenProject={onOpenProject} activeSlug={state?.highlight} />
       <ProjectShowcase onOpenProject={onOpenProject} onReady={handleReady} />
       <PhilosophySection />
       <VisualStory />
