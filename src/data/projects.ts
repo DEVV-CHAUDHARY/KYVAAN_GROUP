@@ -250,63 +250,63 @@ export const PROJECTS: Project[] = [
     tint: "rgba(176,141,87,0.18)",
   },
   {
-    slug: "kyvaan-aangan",
+    slug: "the-interval",
     number: "04",
-    name: "KYVAAN Aangan",
-    status: "concept",
-    statusLabel: "Concept Project",
-    conceptNote:
-      "A visual design study prepared to illustrate a direction. This is not a current or completed KYVAAN development — no location, specification, pricing or availability is implied.",
-    category: "Courtyard Residential",
+    name: "The Interval",
+    status: "live",
+    statusLabel: "Restaurant",
+    conceptNote: null,
+    category: "Fine Multi-Cuisine Dining",
     location: null,
-    tagline: "Courtyards, stone and contemporary Indian design",
+    tagline: "Take a pause from the everyday.",
     description:
-      "A concept study for a premium residential community drawn from the courtyard — the aangan — and the spatial traditions of Indian architecture.",
+      "The Interval is a fine multi-cuisine dining destination bringing together the bold flavours of Pan-Asian cuisine, Indian favourites, rich curries, fragrant biryani and breads fresh from the clay oven. The supplied 2026 menu also features tandoor selections, beverages and snacks, with service described as round the clock.",
     story: [
-      "Aangan places the courtyard back at the centre: warm stone, deep shade, landscaped internal space and light that moves across the day.",
-      "Shown here as a design direction only, prepared ahead of a confirmed site.",
+      "A welcoming place to pause, gather and enjoy a thoughtfully varied menu. Begin with smoky tandoor kebabs and crisp bites, explore vibrant Pan-Asian flavours, or settle into Indian curries, biryani and freshly prepared breads.",
+      "The supplied menu presents The Interval as fine multi-cuisine dining, with tandoor, Pan-Asian, Indian, breads, beverages and snacks. Menu items and prices may change; please confirm current offerings with the restaurant."
     ],
-    heroImage:
-      "https://images.pexels.com/photos/13573493/pexels-photo-13573493.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1100&w=1900",
-    heroAlt:
-      "Concept visual — contemporary villa courtyard with warm lighting and planting",
+    heroImage: "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1900",
+    heroAlt: "Warmly lit fine dining restaurant interior",
     heroVideo: null,
     gallery: [
       {
-        src: "https://images.pexels.com/photos/33681489/pexels-photo-33681489.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1800",
-        alt: "Concept visual — carved sandstone arches and pillars",
-        caption: "Concept visual — stone and shade",
-        span: "full",
+        src: "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1800",
+        alt: "Elegant restaurant dining room",
+        caption: "A place to pause and dine",
+        span: "full"
       },
       {
-        src: "https://images.pexels.com/photos/33726340/pexels-photo-33726340.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1800",
-        alt: "Concept visual — carved stone facade and arches",
-        caption: "Concept visual — carved facade",
-        span: "wide",
+        src: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1400",
+        alt: "Multi-course dining spread",
+        caption: "A table full of flavour",
+        span: "wide"
       },
       {
-        src: "https://images.pexels.com/photos/39583696/pexels-photo-39583696.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1000&w=1800",
-        alt: "Concept visual — stone colonnade with deep shadow",
-        caption: "Concept visual — colonnade",
-        span: "tall",
-      },
+        src: "https://images.pexels.com/photos/674574/pexels-photo-674574.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1400",
+        alt: "Freshly prepared restaurant cuisine",
+        caption: "Made for every craving",
+        span: "wide"
+      }
     ],
     features: [
-      "Courtyard architecture",
-      "Warm materials and stone",
-      "Natural light",
-      "Landscaped internal spaces",
-      "Contemporary Indian design",
+      "Fine multi-cuisine dining",
+      "Tandoor selections",
+      "Pan-Asian cuisine",
+      "Indian curries and biryani",
+      "Fresh breads from the clay oven",
+      "Beverages and snacks",
+      "Menu indicates round-the-clock service"
     ],
     amenities: [],
     details: [
-      { label: "Project type", value: "Courtyard residential" },
-      { label: "Status", value: "Concept project" },
-      { label: "Location", value: "To be confirmed" },
-      { label: "Availability", value: "Not released" },
+      { label: "Category", value: "Fine multi-cuisine dining" },
+      { label: "Cuisine", value: "Tandoor · Pan-Asian · Indian" },
+      { label: "Also serves", value: "Breads · Beverages · Snacks" },
+      { label: "Menu edition", value: "Estimated 2026" },
+      { label: "Service", value: "Round-the-clock service stated in supplied menu" }
     ],
-    enquiry: "Register interest",
-    tint: "rgba(176,141,87,0.2)",
+    enquiry: "Enquire about The Interval",
+    tint: "rgba(176,141,87,0.18)"
   },
   {
     slug: "kyvaan-horizon",
