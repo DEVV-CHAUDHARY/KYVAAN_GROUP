@@ -85,7 +85,7 @@ function Shell() {
     return () => window.removeEventListener("kyvaan:transition", handler);
   }, [run]);
 
-  /** Tree / showcase / map → the project's own route. */
+  /** Project showcase / map → the project's own route. */
   const openProject = (slug: string) => run(`/projects/${slug}`, getProject(slug)?.heroImage);
 
   /** Project page → home enquiry form, pre-filled. */
@@ -94,10 +94,10 @@ function Shell() {
   return (
     <>
       <button
-        onClick={() => document.getElementById("tree")?.scrollIntoView({ behavior: "smooth" })}
+        onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[120] focus:bg-bronze focus:px-5 focus:py-3 focus:text-xs focus:font-bold focus:uppercase focus:tracking-[0.25em] focus:text-ink"
       >
-        Skip to the KYVAAN ecosystem
+        Skip to selected projects
       </button>
 
       <Cursor />
