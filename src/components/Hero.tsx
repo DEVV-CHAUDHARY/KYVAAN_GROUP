@@ -128,12 +128,12 @@ export default function Hero({ onExplore }: { onExplore: (id: string) => void })
           className="mt-9 flex flex-col items-center justify-center gap-3.5 sm:flex-row"
         >
           <button
-            onClick={() => onExplore("tree")}
+            onClick={() => onExplore("projects")}
             className="btn-primary w-full justify-center border-ivory sm:w-auto"
             data-magnetic
             data-cursor="link"
           >
-            Explore KYVAAN
+            Explore KYVAAN Projects
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M7 1v12M1 7l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
