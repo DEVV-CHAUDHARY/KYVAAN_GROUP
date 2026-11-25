@@ -170,7 +170,26 @@ export default function ProjectPage({ onEnquire }: { onEnquire: (slug: string) =
 
       {/* ---------- editorial gallery ---------- */}
       <section id="gallery" className="mx-auto max-w-[1500px] px-6 md:px-10" aria-label="Project gallery">
-        {isShriJiCottage ? (
+        {isSharnamPlan ? (
+          <>
+            <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
+              <div><p className="eyebrow text-bronze">Site photography</p><h2 className="mt-3 font-display text-3xl text-bone md:text-5xl">Shri Ji Sharnam — on site</h2></div>
+              <p className="max-w-sm text-sm leading-relaxed text-bone/55">Official layout plan and the latest site photographs.</p>
+            </div>
+            <figure className="img-frame relative mb-4 min-h-[45vh] overflow-hidden bg-[#f8f4ec]">
+              <img src={g0.src} alt={g0.alt} className="h-full max-h-[75vh] w-full object-contain" loading="lazy" decoding="async" />
+              <figcaption className="caption-photo absolute bottom-5 left-6 text-[0.56rem] font-semibold uppercase tracking-[0.28em]">{g0.caption}</figcaption>
+            </figure>
+            <div className="grid auto-rows-[240px] grid-cols-1 gap-4 sm:grid-cols-2 md:auto-rows-[300px] md:grid-cols-3">
+              {project.gallery.slice(1).map((item, index) => (
+                <motion.figure key={item.src} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={seen} transition={{ duration: 0.75, delay: (index % 3) * 0.08, ease: EASE }} className="img-frame group relative overflow-hidden bg-[#f8f4ec]">
+                  <img src={item.src} alt={item.alt} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]" loading="lazy" decoding="async" />
+                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-5 pb-5 pt-14 text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-white">{item.caption}</figcaption>
+                </motion.figure>
+              ))}
+            </div>
+          </>
+        ) : isShriJiCottage ? (
           <>
             <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
               <div>
